@@ -204,8 +204,8 @@ export default function Home() {
       <main ref={wrapperRef} className="h-screen overflow-hidden overscroll-none">
         <div ref={contentRef}>
           <Hero />
-          <Services />
           <AdFormats />
+          <Services />
           <InfluencerMarketing />
           <Projects />
           <CTA />

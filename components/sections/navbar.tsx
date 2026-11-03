@@ -10,8 +10,8 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 
 const links = [
-  { label: "Services", href: "#services" },
   { label: "Ad Formats", href: "#ad-formats" },
+  { label: "Services", href: "#services" },
   { label: "Influencers", href: "#influencers" },
   { label: "Verticals", href: "#projects" },
   { label: "Contact", href: "#contact" },
