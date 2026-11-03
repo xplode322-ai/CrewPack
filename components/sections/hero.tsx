@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 const stats = [
-  { value: 300, suffix: "+", label: "Exclusive sites", accent: "text-neon-cyan" },
+  { value: 2500, suffix: "+", label: "Exclusive sites", accent: "text-neon-cyan" },
   { value: 100, suffix: "+", label: "Countries covered", accent: "text-neon-violet" },
   { value: 100, suffix: "%", label: "Direct with admins", accent: "text-neon-cyan" },
 ];
@@ -27,7 +27,7 @@ const ticker = [
   "Direct Admins",
   "Lowest Commissions",
   "Worldwide Coverage",
-  "300+ Exclusive Sites",
+  "2500+ Exclusive Sites",
 ];
 
 function TickerItem({ text }: { text: string }) {

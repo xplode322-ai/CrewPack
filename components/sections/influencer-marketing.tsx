@@ -28,7 +28,7 @@ const platforms = [
 
 const microStats = [
   { icon: TrendingUp, value: 3.5, suffix: "×", label: "Avg. growth", accent: "text-neon-cyan" },
-  { icon: Zap, value: 48, suffix: "h", label: "Launch window", accent: "text-neon-violet" },
+  { icon: Zap, value: 48, suffix: "h-72h", label: "Launch window", accent: "text-neon-violet" },
   { icon: Users, value: 100, suffix: "%", label: "Organic", accent: "text-neon-fuchsia" },
 ];
 
@@ -55,7 +55,7 @@ export function InfluencerMarketing() {
               Communities that <span className="text-gradient">convert</span>
             </>
           }
-          description="We recruit KOLs and build owned communities across the platforms that actually move attention."
+          description="We recruit KOLs, build owned communities across the platforms that actually move attention, and maintain a dedicated database of TikTok clippers to scale advertiser brands."
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">

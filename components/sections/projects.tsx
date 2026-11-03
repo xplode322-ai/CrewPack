@@ -41,11 +41,17 @@ export function Projects() {
                   alt={p.title}
                   loading="lazy"
                   draggable={false}
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover mix-blend-multiply"
+                  className={cn(
+                    "pointer-events-none absolute inset-0 h-full w-full object-cover mix-blend-multiply",
+                    p.imagePosition ?? "object-center"
+                  )}
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#09090b] to-[#09090b]/40"
+                  className={cn(
+                    "pointer-events-none absolute inset-0 bg-gradient-to-t",
+                    p.overlayClassName ?? "from-[#09090b] to-[#09090b]/40"
+                  )}
                 />
                 <div
                   aria-hidden

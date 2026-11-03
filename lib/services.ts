@@ -34,7 +34,8 @@ export const services: Service[] = [
   {
     id: "direct-admin-deals",
     title: "Direct Admin Deals",
-    description: "No middlemen. No inflated margins.",
+    description:
+      "No middlemen. No inflated margins. We handle all payments via local solutions for admin convenience (USDT, bank transfers, local cards), assist with ad code installation, and negotiate exclusive cooperation terms (prepayment, or post-payment based on advertiser statistics).",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
     icon: Handshake,
@@ -42,11 +43,22 @@ export const services: Service[] = [
     spotColor: "rgba(34, 211, 238, 0.14)",
     span: "md:col-span-2 md:row-span-2",
     stat: {
-      value: 300,
+      value: 2500,
       suffix: "+",
       label: "exclusive sites negotiated directly with admins",
     },
-    tags: ["Sports News", "Global News", "Crypto Sites", "Adult", "File Sharing"],
+    tags: [
+      "Sports News",
+      "Global News",
+      "Crypto Sites",
+      "Adult",
+      "File Sharing",
+      "Forums",
+      "Rating Sites",
+      "Linkbuilding",
+      "Social Media",
+      "TikTok Clippers",
+    ],
   },
   {
     id: "verticals",
