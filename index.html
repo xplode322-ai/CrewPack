@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CrewPack Agency — Global Web Traffic Buying Agency. Exclusive organic traffic direct from admins. Crypto, iGaming and Nutra. Worldwide coverage, lowest market commissions." />
+  <meta name="theme-color" content="#02040a" />
+  <title>CrewPack Agency — Global Web Traffic Buying Agency</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              950: "#02040a",
+              900: "#05070f",
+              850: "#080b16",
+              800: "#0b0f1d",
+              700: "#111629",
+            },
+            neon: {
+              cyan: "#22d3ee",
+              blue: "#3b82f6",
+              violet: "#a855f7",
+              fuchsia: "#d946ef",
+            },
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "system-ui", "sans-serif"],
+            body: ["Inter", "system-ui", "sans-serif"],
+          },
+          animation: {
+            "fade-up": "fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both",
+            "float-slow": "floatSlow 9s ease-in-out infinite",
+            "pulse-glow": "pulseGlow 3.5s ease-in-out infinite",
+            "gradient-x": "gradientX 6s ease infinite",
+            marquee: "marquee 30s linear infinite",
+          },
+          keyframes: {
+            fadeUp: {
+              "0%": { opacity: "0", transform: "translateY(28px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" },
+            },
+            floatSlow: {
+              "0%, 100%": { transform: "translate3d(0, 0, 0) scale(1)" },
+              "50%": { transform: "translate3d(20px, -30px, 0) scale(1.06)" },
+            },
+            pulseGlow: {
+              "0%, 100%": { opacity: "0.55" },
+              "50%": { opacity: "1" },
+            },
+            gradientX: {
+              "0%, 100%": { backgroundPosition: "0% 50%" },
+              "50%": { backgroundPosition: "100% 50%" },
+            },
+            marquee: {
+              "0%": { transform: "translateX(0)" },
+              "100%": { transform: "translateX(-50%)" },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --neon-cyan: #22d3ee;
+      --neon-violet: #a855f7;
+    }
+
+    html { background: #02040a; }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: #02040a;
+      color: #e6ebf4;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    .font-display { font-family: "Space Grotesk", "Inter", sans-serif; }
+
+    /* ---------- Gradient text ---------- */
+    .text-gradient {
+      background: linear-gradient(100deg, #67e8f9 0%, #22d3ee 28%, #818cf8 55%, #c084fc 80%, #e879f9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .text-gradient-animated {
+      background: linear-gradient(100deg, #67e8f9, #22d3ee, #a855f7, #e879f9, #67e8f9);
+      background-size: 240% 240%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: gradientX 7s ease infinite;
+    }
+
+    /* ---------- Background grid + orbs ---------- */
+    .bg-grid {
+      background-image:
+        linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    }
+    .orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(90px);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* ---------- Glass card ---------- */
+    .glass {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass-hover {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    }
+    .glass-hover:hover {
+      transform: translateY(-6px);
+      border-color: rgba(34, 211, 238, 0.45);
+      box-shadow: 0 20px 60px -20px rgba(34, 211, 238, 0.35), 0 0 0 1px rgba(34, 211, 238, 0.08);
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn-primary {
+      position: relative;
+      background: linear-gradient(100deg, #0891b2, #2563eb 45%, #7c3aed);
+      background-size: 180% 180%;
+      box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-position 0.6s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background-position: 100% 50%;
+      box-shadow: 0 18px 50px -12px rgba(124, 58, 237, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+    .btn-ghost {
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .btn-ghost:hover {
+      transform: translateY(-3px);
+      border-color: rgba(168, 85, 247, 0.6);
+      background: rgba(168, 85, 247, 0.08);
+      box-shadow: 0 14px 40px -16px rgba(168, 85, 247, 0.5);
+    }
+
+    /* ---------- Tag chip ---------- */
+    .chip {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .chip:hover {
+      transform: translateY(-4px) scale(1.03);
+      border-color: rgba(34, 211, 238, 0.55);
+      background: rgba(34, 211, 238, 0.08);
+      box-shadow: 0 12px 30px -14px rgba(34, 211, 238, 0.6);
+    }
+
+    /* ---------- Icon tile ---------- */
+    .icon-tile {
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), background 0.45s ease, box-shadow 0.45s ease;
+    }
+    .group:hover .icon-tile {
+      transform: translateY(-4px) rotate(-4deg) scale(1.05);
+      background: linear-gradient(140deg, rgba(34, 211, 238, 0.18), rgba(168, 85, 247, 0.18));
+      box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35), 0 12px 30px -12px rgba(34, 211, 238, 0.55);
+    }
+
+    /* ---------- Scroll reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Gradient border helper ---------- */
+    .gradient-border {
+      position: relative;
+      background-clip: padding-box;
+    }
+    .gradient-border::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(140deg, rgba(34, 211, 238, 0.6), rgba(168, 85, 247, 0.05) 40%, rgba(168, 85, 247, 0.5));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* ---------- Marquee ---------- */
+    .marquee-track { animation: marquee 34s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .marquee-track, .orb, .text-gradient-animated { animation: none !important; }
+    }
+  </style>
+</head>
+
+<body class="font-body bg-ink-950 text-slate-200 antialiased selection:bg-neon-violet/30 selection:text-white">
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink-950/70 backdrop-blur-xl">
+    <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="#top" class="group flex items-center gap-2.5">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-neon-cyan to-neon-violet shadow-lg shadow-neon-violet/30 transition-transform duration-300 group-hover:scale-105">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 17l6-6 4 4 8-8" />
+            <path d="M14 7h7v7" />
+          </svg>
+        </span>
+        <span class="font-display text-lg font-bold tracking-tight text-white">crewpack<span class="text-neon-cyan">.agency</span></span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+        <a href="#niches" class="transition-colors duration-200 hover:text-neon-cyan">Niches</a>
+        <a href="#formats" class="transition-colors duration-200 hover:text-neon-cyan">Ad Formats</a>
+        <a href="#why" class="transition-colors duration-200 hover:text-neon-cyan">Why Us</a>
+        <a href="#contact" class="btn-primary rounded-full px-5 py-2.5 text-sm font-semibold text-white">Get Traffic</a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button id="menu-toggle" class="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-slate-200 md:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg id="icon-open" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden border-t border-white/5 bg-ink-950/95 px-5 py-4 backdrop-blur-xl md:hidden">
+      <div class="flex flex-col gap-1 text-sm font-medium text-slate-200">
+        <a href="#niches" class="rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5 hover:text-neon-cyan">Niches</a>
+        <a href="#formats" class="rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5 hover:text-neon-cyan">Ad Formats</a>
+        <a href="#why" class="rounded-lg px-3 py-2.5 transition-colors hover:bg-white/5 hover:text-neon-cyan">Why Us</a>
+        <a href="#contact" class="btn-primary mt-2 rounded-full px-5 py-2.5 text-center font-semibold text-white">Get Traffic</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="relative isolate overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32" aria-label="Hero">
+      <!-- Background layers -->
+      <div class="bg-grid absolute inset-0 -z-10" aria-hidden="true"></div>
+      <div class="orb left-[-10%] top-[-10%] h-[420px] w-[420px] bg-neon-cyan/25 animate-float-slow" aria-hidden="true"></div>
+      <div class="orb right-[-12%] top-[10%] h-[480px] w-[480px] bg-neon-violet/30 animate-pulse-glow" aria-hidden="true"></div>
+      <div class="orb bottom-[-20%] left-[30%] h-[360px] w-[360px] bg-neon-blue/20 animate-float-slow" style="animation-delay:-4s" aria-hidden="true"></div>
+
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <!-- Badge -->
+          <div class="reveal inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300 backdrop-blur">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon-cyan opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-neon-cyan"></span>
+            </span>
+            Worldwide coverage · Crypto · iGaming · Nutra
+          </div>
+
+          <!-- Headline -->
+          <h1 class="reveal mt-7 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl" style="transition-delay:80ms">
+            Global Web Traffic
+            <span class="text-gradient-animated block pb-1">Buying Agency</span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="reveal mx-auto mt-6 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg" style="transition-delay:160ms">
+            Exclusive organic traffic direct from admins. Worldwide coverage.
+            Lowest market commissions.
+          </p>
+
+          <!-- CTA -->
+          <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay:240ms">
+            <a href="#contact" class="btn-primary w-full rounded-full px-8 py-3.5 text-base font-semibold text-white sm:w-auto">
+              Get Traffic
+              <svg viewBox="0 0 24 24" class="ml-1 inline h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#contact" class="btn-ghost w-full rounded-full px-8 py-3.5 text-base font-semibold text-white sm:w-auto">
+              Become a Partner
+            </a>
+          </div>
+
+          <!-- Trust stats -->
+          <dl class="reveal mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4 sm:gap-8" style="transition-delay:320ms">
+            <div class="glass rounded-2xl p-4 sm:p-5">
+              <dt class="order-last mt-1 text-[11px] uppercase tracking-wider text-slate-500 sm:text-xs">Exclusive sites</dt>
+              <dd class="font-display text-2xl font-bold text-white sm:text-4xl">300<span class="text-neon-cyan">+</span></dd>
+            </div>
+            <div class="glass rounded-2xl p-4 sm:p-5">
+              <dt class="order-last mt-1 text-[11px] uppercase tracking-wider text-slate-500 sm:text-xs">Countries covered</dt>
+              <dd class="font-display text-2xl font-bold text-white sm:text-4xl">100<span class="text-neon-violet">+</span></dd>
+            </div>
+            <div class="glass rounded-2xl p-4 sm:p-5">
+              <dt class="order-last mt-1 text-[11px] uppercase tracking-wider text-slate-500 sm:text-xs">Direct with admins</dt>
+              <dd class="font-display text-2xl font-bold text-white sm:text-4xl">100<span class="text-neon-cyan">%</span></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MARQUEE (niche ticker)
+    ============================================================ -->
+    <div class="relative border-y border-white/5 bg-ink-900/60 py-3.5" aria-hidden="true">
+      <div class="overflow-hidden">
+        <div class="marquee-track flex w-max gap-8 whitespace-nowrap">
+          <!-- duplicated for seamless loop -->
+          <span class="flex gap-8 pr-8 text-sm font-medium text-slate-500">
+            <span>Sports News</span><span class="text-neon-cyan/60">✦</span>
+            <span>Global News</span><span class="text-neon-violet/60">✦</span>
+            <span>Crypto Sites</span><span class="text-neon-cyan/60">✦</span>
+            <span>Adult</span><span class="text-neon-violet/60">✦</span>
+            <span>File Sharing</span><span class="text-neon-cyan/60">✦</span>
+            <span>Organic Traffic</span><span class="text-neon-violet/60">✦</span>
+            <span>Lowest Commissions</span><span class="text-neon-cyan/60">✦</span>
+            <span>Direct Admins</span><span class="text-neon-violet/60">✦</span>
+          </span>
+          <span class="flex gap-8 pr-8 text-sm font-medium text-slate-500">
+            <span>Sports News</span><span class="text-neon-cyan/60">✦</span>
+            <span>Global News</span><span class="text-neon-violet/60">✦</span>
+            <span>Crypto Sites</span><span class="text-neon-cyan/60">✦</span>
+            <span>Adult</span><span class="text-neon-violet/60">✦</span>
+            <span>File Sharing</span><span class="text-neon-cyan/60">✦</span>
+            <span>Organic Traffic</span><span class="text-neon-violet/60">✦</span>
+            <span>Lowest Commissions</span><span class="text-neon-cyan/60">✦</span>
+            <span>Direct Admins</span><span class="text-neon-violet/60">✦</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         NICHES & SITES
+    ============================================================ -->
+    <section id="niches" class="relative py-20 sm:py-28" aria-labelledby="niches-heading">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-2xl">
+          <p class="reveal text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">Our Niches &amp; Sites</p>
+          <h2 id="niches-heading" class="reveal mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl" style="transition-delay:60ms">
+            Exclusively <span class="text-gradient">organic traffic</span>, three high-intent verticals
+          </h2>
+          <p class="reveal mt-5 text-base leading-relaxed text-slate-400 sm:text-lg" style="transition-delay:120ms">
+            We work only with genuine organic audiences across <strong class="text-white">Crypto</strong>,
+            <strong class="text-white">iGaming</strong>, and <strong class="text-white">Nutra</strong> — backed by a database of
+            <strong class="text-white">300+ exclusive sites</strong> spanning the globe.
+          </p>
+        </div>
+
+        <!-- Niche cards -->
+        <div class="mt-12 grid gap-5 sm:grid-cols-3">
+          <article class="reveal glass glass-hover gradient-border rounded-2xl p-7">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-cyan" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.4 7.2 17l.9-5.4L4.2 7.7l5.4-.8L12 2z"/>
+                <path d="M12 8v6"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Crypto</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              High-intent traders, exchanges and Web3 audiences with strong purchasing power.
+            </p>
+          </article>
+
+          <article class="reveal glass glass-hover gradient-border rounded-2xl p-7" style="transition-delay:80ms">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-violet" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 4h10l2 3v9a2 2 0 01-2 2H7a2 2 0 01-2-2V7z"/>
+                <path d="M3 8h18"/>
+                <path d="M12 8v10"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">iGaming</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              Casino, sportsbook and betting audiences that convert around the clock.
+            </p>
+          </article>
+
+          <article class="reveal glass glass-hover gradient-border rounded-2xl p-7" style="transition-delay:160ms">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-fuchsia" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Nutra</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              Health, beauty and wellness buyers ready for direct-response offers.
+            </p>
+          </article>
+        </div>
+
+        <!-- Site type tags -->
+        <div class="reveal mt-10">
+          <h3 class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Site types in our database</h3>
+          <ul class="mt-5 flex flex-wrap gap-3">
+            <li class="chip glass rounded-full px-5 py-2.5 text-sm font-medium text-slate-200">🏅 Sports News</li>
+            <li class="chip glass rounded-full px-5 py-2.5 text-sm font-medium text-slate-200">🌍 Global News</li>
+            <li class="chip glass rounded-full px-5 py-2.5 text-sm font-medium text-slate-200">🪙 Crypto Sites</li>
+            <li class="chip glass rounded-full px-5 py-2.5 text-sm font-medium text-slate-200">🔥 Adult</li>
+            <li class="chip glass rounded-full px-5 py-2.5 text-sm font-medium text-slate-200">📦 File Sharing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         AD FORMATS
+    ============================================================ -->
+    <section id="formats" class="relative py-20 sm:py-28" aria-labelledby="formats-heading">
+      <div class="orb right-[-8%] top-[20%] h-[320px] w-[320px] bg-neon-violet/20 animate-float-slow" aria-hidden="true"></div>
+
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-2xl">
+          <p class="reveal text-sm font-semibold uppercase tracking-[0.2em] text-neon-violet">Ad Formats</p>
+          <h2 id="formats-heading" class="reveal mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl" style="transition-delay:60ms">
+            Every format, <span class="text-gradient">one partner</span>
+          </h2>
+          <p class="reveal mt-5 text-base leading-relaxed text-slate-400 sm:text-lg" style="transition-delay:120ms">
+            Run high-performing campaigns across the placements that actually move volume.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Banners -->
+          <article class="reveal group glass glass-hover rounded-2xl p-7">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-cyan" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                <path d="M9 8h6M9 12h6M9 16h3"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Banners</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              Premium above-the-fold placements with high visibility and strong CTR.
+            </p>
+          </article>
+
+          <!-- Site Branding -->
+          <article class="reveal group glass glass-hover rounded-2xl p-7" style="transition-delay:60ms">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-violet" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M2 8h20M6 4v4M18 4v4"/>
+                <path d="M8 15h8"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Site Branding</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              Full-site takeovers and logo placements that own the entire page.
+            </p>
+          </article>
+
+          <!-- Video Traffic -->
+          <article class="reveal group glass glass-hover rounded-2xl p-7" style="transition-delay:120ms">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-fuchsia" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="3"/>
+                <path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Video Traffic</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              In-stream and in-page video placements for engaging, high-retention users.
+            </p>
+          </article>
+
+          <!-- Catfish -->
+          <article class="reveal group glass glass-hover rounded-2xl p-7" style="transition-delay:180ms">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-cyan" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>
+                <path d="M19 4l.5 1.5L21 6l-1.5.5L19 8l-.5-1.5L17 6l1.5-.5L19 4z"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Catfish</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              Persona-driven outreach formats that spark genuine curiosity and clicks.
+            </p>
+          </article>
+
+          <!-- Popunder -->
+          <article class="reveal group glass glass-hover rounded-2xl p-7" style="transition-delay:240ms">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-violet" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="14" height="11" rx="2"/>
+                <rect x="7" y="9" width="14" height="11" rx="2"/>
+                <path d="M3 5h14M7 9h14"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Popunder</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              High-volume full-page traffic that loads behind the user's session.
+            </p>
+          </article>
+
+          <!-- Sponsored Articles -->
+          <article class="reveal group glass glass-hover rounded-2xl p-7" style="transition-delay:300ms">
+            <div class="icon-tile grid h-12 w-12 place-items-center rounded-xl bg-white/5">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-fuchsia" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2h9l5 5v15H6a2 2 0 01-2-2V4a2 2 0 012-2z"/>
+                <path d="M14 2v6h6"/>
+                <path d="M9 13h6M9 17h4"/>
+              </svg>
+            </div>
+            <h3 class="mt-5 font-display text-xl font-bold text-white">Sponsored Articles</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">
+              Native editorial placements that build trust and drive qualified readers.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHY CHOOSE US
+    ============================================================ -->
+    <section id="why" class="relative py-20 sm:py-28" aria-labelledby="why-heading">
+      <div class="orb left-[-10%] bottom-[0%] h-[360px] w-[360px] bg-neon-cyan/15 animate-pulse-glow" aria-hidden="true"></div>
+
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-2xl">
+          <p class="reveal text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">Why Choose Us</p>
+          <h2 id="why-heading" class="reveal mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl" style="transition-delay:60ms">
+            The <span class="text-gradient">unfair advantage</span> in traffic buying
+          </h2>
+        </div>
+
+        <div class="mt-12 grid gap-5 md:grid-cols-2">
+          <!-- Direct deals -->
+          <article class="reveal glass glass-hover rounded-2xl p-8">
+            <div class="flex items-start gap-5">
+              <div class="icon-tile grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/5">
+                <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-cyan" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 12a9 9 0 11-9-9"/>
+                  <path d="M21 3l-9 9"/>
+                  <path d="M15 3h6v6"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-white">Direct Deals</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-400">
+                  We negotiate directly with site admins and handle local financial institutions — no middlemen, no inflated margins.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Technology -->
+          <article class="reveal glass glass-hover rounded-2xl p-8" style="transition-delay:80ms">
+            <div class="flex items-start gap-5">
+              <div class="icon-tile grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/5">
+                <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-violet" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10 20l4-16"/>
+                  <path d="M8 7L3 12l5 5"/>
+                  <path d="M16 7l5 5-5 5"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-white">Proprietary Technology</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-400">
+                  We use custom-built scrapers to find the exact sites you need, anywhere in the world.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Transparency -->
+          <article class="reveal glass glass-hover rounded-2xl p-8" style="transition-delay:160ms">
+            <div class="flex items-start gap-5">
+              <div class="icon-tile grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/5">
+                <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-fuchsia" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-white">Full Transparency</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-400">
+                  We provide complete Google Analytics statistics for each site — yearly and last month.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Flexible models -->
+          <article class="reveal glass glass-hover rounded-2xl p-8" style="transition-delay:240ms">
+            <div class="flex items-start gap-5">
+              <div class="icon-tile grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/5">
+                <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-cyan" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 3v9l6 3"/>
+                  <path d="M3 12h18"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold text-white">Flexible Models</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-400">
+                  Choose the pricing that fits your goals — <span class="text-slate-200">CPM</span>, <span class="text-slate-200">CPC</span>, or <span class="text-slate-200">Flat fee</span>.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT / FOOTER
+    ============================================================ -->
+    <section id="contact" class="relative py-20 sm:py-28" aria-labelledby="contact-heading">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal gradient-border relative overflow-hidden rounded-3xl bg-ink-850 px-6 py-16 text-center sm:px-16">
+          <div class="orb left-1/2 top-1/2 h-[320px] w-[560px] -translate-x-1/2 -translate-y-1/2 bg-neon-violet/20 animate-pulse-glow" aria-hidden="true"></div>
+
+          <div class="relative">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-neon-cyan">Contact</p>
+            <h2 id="contact-heading" class="mx-auto mt-4 max-w-2xl font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
+              Ready for <span class="text-gradient">exclusive deals?</span>
+            </h2>
+            <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-400">
+              Tell us your niche, geo and volumes — our team will get back to you with
+              the best placements and the lowest market commissions.
+            </p>
+
+            <div class="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <!-- Telegram placeholder -->
+              <a href="https://t.me/your_username" target="_blank" rel="noopener"
+                 class="btn-primary inline-flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-3.5 text-base font-semibold text-white sm:w-auto">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path d="M9.04 15.51l-.38 5.35c.54 0 .78-.23 1.06-.51l2.55-2.44 5.28 3.86c.97.53 1.66.25 1.92-.9L22.5 3.9c.31-1.42-.5-1.98-1.4-1.63L2.12 9.57c-1.35.52-1.33 1.27-.23 1.61l4.85 1.51L18.7 6.4c.53-.34 1.01-.16.61.2L9.04 15.51z"/>
+                </svg>
+                Chat on Telegram
+              </a>
+              <!-- Email placeholder -->
+              <a href="mailto:hello@crewpack.agency"
+                 class="btn-ghost inline-flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-3.5 text-base font-semibold text-white sm:w-auto">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M2 7l10 6L22 7"/>
+                </svg>
+                hello@crewpack.agency
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="border-t border-white/5 bg-ink-900/60 py-10">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
+      <a href="#top" class="flex items-center gap-2.5">
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-neon-cyan to-neon-violet">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 17l6-6 4 4 8-8" />
+            <path d="M14 7h7v7" />
+          </svg>
+        </span>
+        <span class="font-display text-base font-bold text-white">crewpack<span class="text-neon-cyan">.agency</span></span>
+      </a>
+
+      <p class="text-center text-sm text-slate-500">
+        © <span id="year">2026</span> CrewPack Agency. All rights reserved. · Global Web Traffic Buying Agency
+      </p>
+
+      <div class="flex items-center gap-3 text-slate-400">
+        <a href="https://t.me/your_username" target="_blank" rel="noopener" aria-label="Telegram" class="grid h-9 w-9 place-items-center rounded-lg border border-white/10 transition-all duration-300 hover:border-neon-cyan/50 hover:text-neon-cyan">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+            <path d="M9.04 15.51l-.38 5.35c.54 0 .78-.23 1.06-.51l2.55-2.44 5.28 3.86c.97.53 1.66.25 1.92-.9L22.5 3.9c.31-1.42-.5-1.98-1.4-1.63L2.12 9.57c-1.35.52-1.33 1.27-.23 1.61l4.85 1.51L18.7 6.4c.53-.34 1.01-.16.61.2L9.04 15.51z"/>
+          </svg>
+        </a>
+        <a href="mailto:hello@crewpack.agency" aria-label="Email" class="grid h-9 w-9 place-items-center rounded-lg border border-white/10 transition-all duration-300 hover:border-neon-violet/50 hover:text-neon-violet">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 6L22 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const iconOpen = document.getElementById("icon-open");
+    const iconClose = document.getElementById("icon-close");
+
+    toggle.addEventListener("click", () => {
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden");
+      iconOpen.classList.toggle("hidden", !isOpen);
+      iconClose.classList.toggle("hidden", isOpen);
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    // Close mobile menu on link click
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu.classList.add("hidden");
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    // Dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
