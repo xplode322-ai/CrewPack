@@ -65,6 +65,34 @@ export function Services() {
                     ))}
                   </div>
                 )}
+                {s.formats && (
+                  <ul className="mt-6 flex flex-col gap-3">
+                    {s.formats.map((f) => (
+                      <li
+                        key={f.name}
+                        className="flex items-start gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors duration-300 hover:border-white/10 hover:bg-white/[0.04] sm:gap-4 sm:p-4"
+                      >
+                        <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/5">
+                          <f.icon className={cn("h-4 w-4", s.accent)} />
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-semibold text-white">
+                            {f.name}
+                          </p>
+                          <p className="mt-0.5 text-xs leading-relaxed text-zinc-400">
+                            {f.description}
+                          </p>
+                        </div>
+                        <span className="shrink-0 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-semibold">
+                          <span className="font-medium text-zinc-500">
+                            CR&nbsp;
+                          </span>
+                          <span className={s.accent}>{f.cr}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </BentoCard>
           ))}

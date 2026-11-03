@@ -51,18 +51,25 @@ export default function Home() {
       return el.getBoundingClientRect().top - content.getBoundingClientRect().top;
     };
 
-    // Strict 1:1 transition to a specific section index.
-    const goTo = (index: number) => {
-      const next = Math.max(0, Math.min(index, total - 1));
-      if (next === indexRef.current) return;
-      indexRef.current = next;
-      setActiveIndex(next);
-      animatingRef.current = true;
+    // Which section a given scroll offset currently belongs to.
+    const activeFromScroll = (top: number) => {
+      let idx = 0;
+      for (let i = 0; i < total; i++) {
+        if (top >= offsetOf(i) - 1) idx = i;
+      }
+      return idx;
+    };
 
+    // Animate the wrapper to an absolute offset, updating nav state along the way.
+    const animateTo = (to: number) => {
       const from = wrapper.scrollTop;
-      const to = clamp(offsetOf(next));
+      const target = clamp(to);
+      if (Math.abs(target - from) < 1) return;
+      indexRef.current = activeFromScroll(target);
+      setActiveIndex(indexRef.current);
+      animatingRef.current = true;
       controls?.stop();
-      controls = animate(from, to, {
+      controls = animate(from, target, {
         duration: DURATION,
         ease: EASE,
         onUpdate: (v) => {
@@ -75,23 +82,50 @@ export default function Home() {
       });
     };
 
+    // Direct jump to a specific section's top (nav links / programmatic).
+    const goTo = (index: number) => {
+      const next = Math.max(0, Math.min(index, total - 1));
+      animateTo(offsetOf(next));
+    };
+
+    // Step one "page" in a direction. Tall sections are traversed in
+    // viewport-sized steps so their full content stays reachable; otherwise
+    // this snaps exactly to the adjacent section boundary.
+    const scrollStep = (dir: 1 | -1) => {
+      const vh = wrapper.clientHeight;
+      const from = wrapper.scrollTop;
+      const idx = activeFromScroll(from);
+      const sectionTop = offsetOf(idx);
+      const sectionBottom =
+        idx + 1 < total ? offsetOf(idx + 1) : wrapper.scrollHeight;
+      const snapZone = vh * 0.2;
+
+      let target: number;
+      if (dir > 0) {
+        const remaining = sectionBottom - from;
+        if (remaining > vh) {
+          target = from + vh;
+          if (sectionBottom - target < snapZone) target = sectionBottom;
+        } else {
+          target = sectionBottom;
+        }
+      } else {
+        const above = from - sectionTop;
+        if (above > snapZone) {
+          target = from - vh;
+          if (target - sectionTop < snapZone) target = sectionTop;
+        } else {
+          target = offsetOf(Math.max(0, idx - 1));
+        }
+      }
+
+      animateTo(target);
+    };
+
     // Public scroll API exposed to nav/footer via context.
     const scrollTo = (target: string | number) => {
       if (typeof target === "number") {
-        const from = wrapper.scrollTop;
-        animatingRef.current = true;
-        controls?.stop();
-        controls = animate(from, clamp(target), {
-          duration: DURATION,
-          ease: EASE,
-          onUpdate: (v) => {
-            wrapper.scrollTop = v;
-          },
-          onComplete: () => {
-            animatingRef.current = false;
-            lastNavRef.current = performance.now();
-          },
-        });
+        animateTo(target);
         return;
       }
       const id = target.replace("#", "");
@@ -101,14 +135,14 @@ export default function Home() {
 
     register({ scrollTo });
 
-    // Wheel — strict next/previous block (desktop).
+    // Wheel — step or snap (desktop).
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
       if (animatingRef.current) return;
       if (performance.now() - lastNavRef.current < COOLDOWN) return;
       if (Math.abs(e.deltaY) < WHEEL_THRESHOLD) return;
       lastNavRef.current = performance.now();
-      goTo(indexRef.current + (e.deltaY > 0 ? 1 : -1));
+      scrollStep(e.deltaY > 0 ? 1 : -1);
     };
 
     // Touch — swipe up/down (mobile).
@@ -122,17 +156,17 @@ export default function Home() {
       const delta = startY - e.changedTouches[0].clientY;
       if (Math.abs(delta) < SWIPE_THRESHOLD) return;
       lastNavRef.current = performance.now();
-      goTo(indexRef.current + (delta > 0 ? 1 : -1));
+      scrollStep(delta > 0 ? 1 : -1);
     };
 
     // Keyboard — arrows / page keys / home / end.
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowDown" || e.key === "PageDown") {
         e.preventDefault();
-        goTo(indexRef.current + 1);
+        scrollStep(1);
       } else if (e.key === "ArrowUp" || e.key === "PageUp") {
         e.preventDefault();
-        goTo(indexRef.current - 1);
+        scrollStep(-1);
       } else if (e.key === "Home") {
         e.preventDefault();
         goTo(0);
