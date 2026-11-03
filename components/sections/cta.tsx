@@ -1,41 +1,23 @@
 "use client";
 
 import { Mail, MessageCircle } from "lucide-react";
-import { Marquee } from "@/components/ui/marquee";
+import { cn } from "@/lib/utils";
+import { SNAP_SECTION } from "@/lib/section";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { Sparkles } from "@/components/ui/sparkles";
 import { GlowOrb } from "@/components/ui/glow-orb";
-
-const ticker = [
-  "Crypto",
-  "iGaming",
-  "Nutra",
-  "Organic Traffic",
-  "Direct Admins",
-  "Lowest Commissions",
-  "Worldwide Coverage",
-  "300+ Exclusive Sites",
-];
-
-function TickerItem({ text }: { text: string }) {
-  return (
-    <span className="flex items-center gap-8 text-sm font-medium uppercase tracking-[0.2em] text-slate-300">
-      <span>{text}</span>
-      <span className="text-neon-cyan/60">✦</span>
-    </span>
-  );
-}
+import { Footer } from "@/components/sections/footer";
 
 export function CTA() {
   return (
-    <section id="contact" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent px-6 py-16 text-center sm:px-16 sm:py-20">
+    <section id="contact" className={cn(SNAP_SECTION, "overflow-hidden")}>
+      <div className="flex w-full flex-1 flex-col items-center justify-center px-5 py-24 sm:px-8">
+        <Reveal className="w-full max-w-4xl">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent px-6 py-14 text-center sm:px-16 sm:py-16">
             <GlowOrb
-              className="inset-0 m-auto h-[320px] w-[560px]"
+              className="inset-0 m-auto h-[300px] w-[520px]"
               color="bg-neon-violet/15"
               duration={11}
             />
@@ -80,17 +62,7 @@ export function CTA() {
         </Reveal>
       </div>
 
-      {/* Marquee ticker */}
-      <div className="mt-16">
-        <Marquee
-          speed={32}
-          className="[mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
-        >
-          {ticker.map((t) => (
-            <TickerItem key={t} text={t} />
-          ))}
-        </Marquee>
-      </div>
+      <Footer />
     </section>
   );
 }

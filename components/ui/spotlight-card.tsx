@@ -18,11 +18,20 @@ interface SpotlightCardProps {
   spotSize?: number;
   /** Stagger delay for the reveal animation (seconds). */
   delay?: number;
+  /** Optional background image rendered behind the spotlight glow. */
+  image?: string;
+  /** Alt text for the background image (defaults to empty for decoration). */
+  imageAlt?: string;
+  /** Classes applied to the `<img>` element. */
+  imageClassName?: string;
+  /** Classes applied to the gradient overlay above the image. */
+  overlayClassName?: string;
 }
 
 /**
  * Glassmorphic card (`bg-white/5` + backdrop blur + 1px border) with a dynamic
- * radial-gradient glow that trails the pointer. Also self-reveals on scroll.
+ * radial-gradient glow that trails the pointer. Optionally renders a dark
+ * background image beneath the spotlight. Self-reveals on scroll.
  */
 export function SpotlightCard({
   children,
@@ -30,6 +39,10 @@ export function SpotlightCard({
   spotColor = "rgba(34, 211, 238, 0.14)",
   spotSize = 360,
   delay = 0,
+  image,
+  imageAlt = "",
+  imageClassName,
+  overlayClassName,
 }: SpotlightCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
@@ -59,6 +72,28 @@ export function SpotlightCard({
         className
       )}
     >
+      {image && (
+        <img
+          src={image}
+          alt={imageAlt}
+          loading="lazy"
+          draggable={false}
+          className={cn(
+            "pointer-events-none absolute inset-0 h-full w-full object-cover",
+            imageClassName
+          )}
+        />
+      )}
+      {image && (
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-0",
+            overlayClassName ??
+              "bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent"
+          )}
+        />
+      )}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"

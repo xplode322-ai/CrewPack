@@ -11,7 +11,7 @@ export function Footer() {
     if (lenis) {
       lenis.scrollTo(0, { duration: 1.4 });
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" });
     }
   }
 

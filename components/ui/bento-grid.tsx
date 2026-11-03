@@ -16,10 +16,7 @@ interface BentoGridProps {
 export function BentoGrid({ children, className }: BentoGridProps) {
   return (
     <div
-      className={cn(
-        "grid grid-cols-1 gap-4 md:grid-cols-3",
-        className
-      )}
+      className={cn("grid grid-cols-1 gap-4 md:grid-cols-3", className)}
     >
       {children}
     </div>
@@ -28,36 +25,49 @@ export function BentoGrid({ children, className }: BentoGridProps) {
 
 interface BentoCardProps {
   icon?: ReactNode;
+  iconClassName?: string;
   title: string;
   description?: ReactNode;
   children?: ReactNode;
   className?: string;
   spotColor?: string;
   delay?: number;
+  /** Optional dark background image with a heavy gradient overlay. */
+  image?: string;
 }
 
 /**
- * Standard bento cell: glass card + icon + title + description with an
- * optional free-form `children` block pinned to the bottom.
+ * Standard bento cell: glass card + background image + icon + title +
+ * description with an optional free-form `children` block pinned to the bottom.
  */
 export function BentoCard({
   icon,
+  iconClassName,
   title,
   description,
   children,
   className,
   spotColor,
   delay = 0,
+  image,
 }: BentoCardProps) {
   return (
     <SpotlightCard
       className={cn("p-6 sm:p-7", className)}
       spotColor={spotColor}
       delay={delay}
+      image={image}
+      imageClassName="opacity-40 mix-blend-multiply"
+      overlayClassName="bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent"
     >
       <div className="flex h-full flex-col">
         {icon && (
-          <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-white/5 transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-105">
+          <div
+            className={cn(
+              "mb-4 grid h-12 w-12 place-items-center rounded-xl bg-white/5 transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-105",
+              iconClassName
+            )}
+          >
             {icon}
           </div>
         )}

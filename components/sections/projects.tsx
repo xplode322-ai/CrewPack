@@ -1,60 +1,23 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { SNAP_SECTION } from "@/lib/section";
+import { projects } from "@/lib/projects";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { TiltCard } from "@/components/ui/tilt-card";
-import { Parallax } from "@/components/ui/parallax";
 import { AnimatedNumber } from "@/components/ui/animated-number";
-import { cn } from "@/lib/utils";
-
-const projects = [
-  {
-    category: "Crypto",
-    title: "Exchange Launch",
-    description:
-      "High-intent traders and Web3 audiences across tier-1 and emerging markets.",
-    stats: [
-      { value: 2.4, suffix: "M", label: "Impressions / mo" },
-      { value: 3.8, suffix: "%", label: "Avg. CTR" },
-      { value: 40, suffix: "+", label: "Geos" },
-    ],
-    accent: "text-neon-cyan",
-    glow: "bg-neon-cyan/25",
-  },
-  {
-    category: "iGaming",
-    title: "Sportsbook Scale-Up",
-    description:
-      "Casino and sportsbook audiences that convert around the clock.",
-    stats: [
-      { value: 5.1, suffix: "M", label: "Impressions / mo" },
-      { value: 4.2, suffix: "%", label: "Avg. CTR" },
-      { value: 25, suffix: "+", label: "Geos" },
-    ],
-    accent: "text-neon-violet",
-    glow: "bg-neon-violet/25",
-  },
-  {
-    category: "Nutra",
-    title: "Direct-Response Nutra",
-    description:
-      "Health, beauty and wellness buyers ready for direct-response offers.",
-    stats: [
-      { value: 1.8, suffix: "M", label: "Impressions / mo" },
-      { value: 2.9, suffix: "%", label: "Avg. CTR" },
-      { value: 15, suffix: "+", label: "Geos" },
-    ],
-    accent: "text-neon-fuchsia",
-    glow: "bg-neon-fuchsia/25",
-  },
-];
 
 export function Projects() {
   return (
-    <section id="projects" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <section
+      id="projects"
+      className={cn(SNAP_SECTION, "overflow-hidden bg-[#09090b] py-20")}
+    >
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <SectionHeading
+          align="center"
           eyebrow="Verticals & Results"
           title={
             <>
@@ -64,21 +27,31 @@ export function Projects() {
           description="Campaigns engineered for high-intent audiences across crypto, iGaming and nutra."
         />
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.12} className="h-full">
               <TiltCard className="h-full">
-                <div className="relative flex h-full flex-col p-7">
-                  <Parallax
-                    from={24}
-                    to={-24}
-                    className="pointer-events-none absolute -right-8 -top-8 h-36 w-36"
-                  >
-                    <div
-                      className={cn("h-full w-full rounded-full blur-3xl", p.glow)}
-                    />
-                  </Parallax>
+                {/* Background image with dark blend */}
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  draggable={false}
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-80 mix-blend-multiply"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/70 to-[#09090b]/30"
+                />
+                <div
+                  aria-hidden
+                  className={cn(
+                    "pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-60 blur-3xl",
+                    p.glow
+                  )}
+                />
 
+                <div className="relative z-10 flex h-full flex-col p-7">
                   <div className="flex items-center justify-between">
                     <span
                       className={cn(
@@ -104,7 +77,7 @@ export function Projects() {
                     {p.stats.map((s) => (
                       <div
                         key={s.label}
-                        className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center"
+                        className="rounded-xl border border-white/5 bg-[#09090b]/50 p-3 text-center backdrop-blur"
                       >
                         <div className="font-display text-xl font-bold text-white sm:text-2xl">
                           <AnimatedNumber value={s.value} />

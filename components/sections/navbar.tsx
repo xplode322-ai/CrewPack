@@ -10,6 +10,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 
 const links = [
   { label: "Services", href: "#services" },
+  { label: "Influencers", href: "#influencers" },
   { label: "Verticals", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
@@ -20,20 +21,24 @@ export function Navbar() {
   const lenis = useLenis();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    if (!lenis) {
+      setScrolled(false);
+      return;
+    }
+    const update = () => setScrolled(lenis.scroll > 24);
+    update();
+    lenis.on("scroll", update);
+    return () => {
+      lenis.off("scroll", update);
+    };
+  }, [lenis]);
 
   function scrollTo(href: string) {
     setOpen(false);
-    const el = document.querySelector<HTMLElement>(href);
-    if (!el) return;
     if (lenis) {
-      lenis.scrollTo(el, { offset: -72, duration: 1.4 });
+      lenis.scrollTo(href, { duration: 1.2 });
     } else {
-      el.scrollIntoView({ behavior: "smooth" });
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     }
   }
 

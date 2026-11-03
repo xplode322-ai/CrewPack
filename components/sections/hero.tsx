@@ -1,13 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { SNAP_SECTION } from "@/lib/section";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { Sparkles } from "@/components/ui/sparkles";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { Reveal } from "@/components/ui/reveal";
 import { GlowOrb } from "@/components/ui/glow-orb";
 import { AnimatedNumber } from "@/components/ui/animated-number";
+import { Marquee } from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
@@ -17,11 +19,34 @@ const stats = [
   { value: 100, suffix: "%", label: "Direct with admins", accent: "text-neon-cyan" },
 ];
 
+const ticker = [
+  "Crypto",
+  "iGaming",
+  "Nutra",
+  "Organic Traffic",
+  "Direct Admins",
+  "Lowest Commissions",
+  "Worldwide Coverage",
+  "300+ Exclusive Sites",
+];
+
+function TickerItem({ text }: { text: string }) {
+  return (
+    <span className="flex items-center gap-8 text-sm font-medium uppercase tracking-[0.2em] text-slate-300">
+      <span>{text}</span>
+      <span className="text-neon-cyan/60">✦</span>
+    </span>
+  );
+}
+
 export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate flex min-h-screen items-center overflow-hidden bg-[#09090b] pb-24 pt-32 sm:pt-40"
+      className={cn(
+        SNAP_SECTION,
+        "isolate overflow-hidden bg-[#09090b]"
+      )}
     >
       {/* ---------- Background layers ---------- */}
       <div className="absolute inset-0 -z-10">
@@ -44,7 +69,8 @@ export function Hero() {
         delay={-4}
       />
 
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+      {/* ---------- Content ---------- */}
+      <div className="mx-auto w-full max-w-7xl px-5 pb-32 pt-28 sm:px-8">
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           {/* Badge */}
           <Reveal>
@@ -58,7 +84,7 @@ export function Hero() {
           </Reveal>
 
           {/* Headline */}
-          <h1 className="mt-8 font-display text-[2.75rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl">
+          <h1 className="mt-8 font-display text-[2.5rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
             <span className="block">
               <TextReveal text="Global Web Traffic" />
             </span>
@@ -80,7 +106,7 @@ export function Hero() {
           </Reveal>
 
           {/* CTA */}
-          <Reveal delay={0.6} className="mt-9">
+          <Reveal delay={0.6} className="mt-8">
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <MagneticButton>
                 <Button variant="glow" size="lg" asChild>
@@ -99,7 +125,7 @@ export function Hero() {
           </Reveal>
 
           {/* Stats */}
-          <dl className="mt-14 grid w-full max-w-2xl grid-cols-3 gap-3 sm:gap-4">
+          <dl className="mt-12 grid w-full max-w-2xl grid-cols-3 gap-3 sm:gap-4">
             {stats.map((s, i) => (
               <Reveal key={s.label} delay={0.7 + i * 0.08} className="h-full">
                 <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl sm:p-5">
@@ -117,18 +143,16 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block">
-        <motion.a
-          href="#services"
-          className="flex flex-col items-center gap-2 text-slate-500 transition-colors hover:text-white"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          aria-label="Scroll to services"
+      {/* ---------- Marquee (moved from footer/CTA) ---------- */}
+      <div className="absolute bottom-0 w-full border-t border-white/5 bg-[#09090b]/70 backdrop-blur">
+        <Marquee
+          speed={32}
+          className="py-4 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
         >
-          <span className="text-[11px] uppercase tracking-[0.2em]">Scroll</span>
-          <ChevronDown className="h-4 w-4" />
-        </motion.a>
+          {ticker.map((t) => (
+            <TickerItem key={t} text={t} />
+          ))}
+        </Marquee>
       </div>
     </section>
   );
