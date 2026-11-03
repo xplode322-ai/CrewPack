@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useLenis } from "@/components/providers/LenisProvider";
+import { useScrollController } from "@/components/providers/scroll-provider";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
@@ -17,30 +17,13 @@ const links = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const lenis = useLenis();
-
-  useEffect(() => {
-    if (!lenis) {
-      setScrolled(false);
-      return;
-    }
-    const update = () => setScrolled(lenis.scroll > 24);
-    update();
-    lenis.on("scroll", update);
-    return () => {
-      lenis.off("scroll", update);
-    };
-  }, [lenis]);
+  const { scrollTo: navigate, activeIndex } = useScrollController();
+  const scrolled = activeIndex > 0;
 
   function scrollTo(href: string) {
     setOpen(false);
-    if (lenis) {
-      lenis.scrollTo(href, { duration: 1.2 });
-    } else {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    }
+    navigate(href);
   }
 
   return (

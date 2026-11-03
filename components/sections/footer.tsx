@@ -1,18 +1,14 @@
 "use client";
 
 import { ArrowRight, Mail, MessageCircle } from "lucide-react";
-import { useLenis } from "@/components/providers/LenisProvider";
+import { useScrollController } from "@/components/providers/scroll-provider";
 
 export function Footer() {
-  const lenis = useLenis();
+  const { scrollTo } = useScrollController();
 
   function toTop(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
-    if (lenis) {
-      lenis.scrollTo(0, { duration: 1.4 });
-    } else {
-      document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollTo("#home");
   }
 
   return (

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Lenis from "lenis";
-import { useSetLenis } from "@/components/providers/LenisProvider";
+import { animate } from "framer-motion";
+import { useScrollController } from "@/components/providers/scroll-provider";
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
@@ -10,92 +10,155 @@ import { InfluencerMarketing } from "@/components/sections/influencer-marketing"
 import { Projects } from "@/components/sections/projects";
 import { CTA } from "@/components/sections/cta";
 
-const easeOutExpo = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
+/** Full-page transition curve (fast start, soft landing). */
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const DURATION = 1;
+/** Ignore wheel input for this long after a transition to absorb trackpad inertia. */
+const COOLDOWN = 300;
+/** Minimum wheel delta / swipe distance to register as a deliberate scroll. */
+const WHEEL_THRESHOLD = 6;
+const SWIPE_THRESHOLD = 60;
 
 export default function Home() {
   const wrapperRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const setLenis = useSetLenis();
+  const indexRef = useRef(0);
+  const animatingRef = useRef(false);
+  const lastNavRef = useRef(0);
+  const { register, setActiveIndex } = useScrollController();
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
     const content = contentRef.current;
     if (!wrapper || !content) return;
 
-    const lenis = new Lenis({
-      wrapper,
-      content,
-      duration: 1.15,
-      easing: easeOutExpo,
-      smoothWheel: true,
-      touchMultiplier: 1.5,
-    });
+    const sections = Array.from(
+      content.querySelectorAll<HTMLElement>("section")
+    );
+    const total = sections.length;
 
-    setLenis(lenis);
+    let controls: ReturnType<typeof animate> | null = null;
 
-    // ------------------------------------------------------------------
-    // Self-contained scroll snap (safe with a custom scroll wrapper).
-    //
-    // The stock `lenis/snap` plugin and CSS `scroll-snap-type` both assume
-    // the window is the scroll container, which conflicts with this custom
-    // `h-screen overflow-y-scroll` wrapper and freezes the page. Instead we
-    // debounce the end of any scroll and animate to the nearest section.
-    // ------------------------------------------------------------------
-    let snapTimer: ReturnType<typeof setTimeout> | null = null;
+    const clamp = (v: number) =>
+      Math.max(0, Math.min(v, wrapper.scrollHeight - wrapper.clientHeight));
 
-    const getSnapPoints = () => {
-      const wrapperTop = wrapper.getBoundingClientRect().top;
-      const currentScroll = wrapper.scrollTop;
-      return Array.from(content.querySelectorAll<HTMLElement>("section"))
-        .map((section) =>
-          Math.round(
-            section.getBoundingClientRect().top - wrapperTop + currentScroll
-          )
-        )
-        .sort((a, b) => a - b);
+    // Offset of a section relative to the content (scroll-invariant).
+    const offsetOf = (i: number) => {
+      const el = sections[i];
+      if (!el) return 0;
+      return el.getBoundingClientRect().top - content.getBoundingClientRect().top;
     };
 
-    const snapToNearest = () => {
-      const points = getSnapPoints();
-      if (points.length === 0) return;
-      const current = lenis.scroll;
-      const nearest = points.reduce((best, p) =>
-        Math.abs(p - current) < Math.abs(best - current) ? p : best
-      );
-      if (Math.abs(nearest - current) < 2) return;
-      lenis.scrollTo(nearest, { duration: 1, easing: easeOutExpo });
+    // Strict 1:1 transition to a specific section index.
+    const goTo = (index: number) => {
+      const next = Math.max(0, Math.min(index, total - 1));
+      if (next === indexRef.current) return;
+      indexRef.current = next;
+      setActiveIndex(next);
+      animatingRef.current = true;
+
+      const from = wrapper.scrollTop;
+      const to = clamp(offsetOf(next));
+      controls?.stop();
+      controls = animate(from, to, {
+        duration: DURATION,
+        ease: EASE,
+        onUpdate: (v) => {
+          wrapper.scrollTop = v;
+        },
+        onComplete: () => {
+          animatingRef.current = false;
+          lastNavRef.current = performance.now();
+        },
+      });
     };
 
-    const scheduleSnap = () => {
-      if (snapTimer) clearTimeout(snapTimer);
-      snapTimer = setTimeout(snapToNearest, 140);
+    // Public scroll API exposed to nav/footer via context.
+    const scrollTo = (target: string | number) => {
+      if (typeof target === "number") {
+        const from = wrapper.scrollTop;
+        animatingRef.current = true;
+        controls?.stop();
+        controls = animate(from, clamp(target), {
+          duration: DURATION,
+          ease: EASE,
+          onUpdate: (v) => {
+            wrapper.scrollTop = v;
+          },
+          onComplete: () => {
+            animatingRef.current = false;
+            lastNavRef.current = performance.now();
+          },
+        });
+        return;
+      }
+      const id = target.replace("#", "");
+      const idx = sections.findIndex((s) => s.id === id);
+      if (idx !== -1) goTo(idx);
     };
 
-    lenis.on("scroll", scheduleSnap);
+    register({ scrollTo });
 
-    let rafId = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+    // Wheel — strict next/previous block (desktop).
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (animatingRef.current) return;
+      if (performance.now() - lastNavRef.current < COOLDOWN) return;
+      if (Math.abs(e.deltaY) < WHEEL_THRESHOLD) return;
+      lastNavRef.current = performance.now();
+      goTo(indexRef.current + (e.deltaY > 0 ? 1 : -1));
     };
-    rafId = requestAnimationFrame(raf);
+
+    // Touch — swipe up/down (mobile).
+    let startY = 0;
+    const onTouchStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      if (animatingRef.current) return;
+      if (performance.now() - lastNavRef.current < COOLDOWN) return;
+      const delta = startY - e.changedTouches[0].clientY;
+      if (Math.abs(delta) < SWIPE_THRESHOLD) return;
+      lastNavRef.current = performance.now();
+      goTo(indexRef.current + (delta > 0 ? 1 : -1));
+    };
+
+    // Keyboard — arrows / page keys / home / end.
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === "PageDown") {
+        e.preventDefault();
+        goTo(indexRef.current + 1);
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+        e.preventDefault();
+        goTo(indexRef.current - 1);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        goTo(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        goTo(total - 1);
+      }
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("keydown", onKey);
 
     return () => {
-      cancelAnimationFrame(rafId);
-      if (snapTimer) clearTimeout(snapTimer);
-      lenis.off("scroll", scheduleSnap);
-      lenis.destroy();
-      setLenis(null);
+      controls?.stop();
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("keydown", onKey);
+      register(null);
     };
-  }, [setLenis]);
+  }, [register, setActiveIndex]);
 
   return (
     <>
       <Navbar />
-      <main
-        ref={wrapperRef}
-        className="h-screen overflow-y-scroll"
-      >
+      <main ref={wrapperRef} className="h-screen overflow-hidden overscroll-none">
         <div ref={contentRef}>
           <Hero />
           <Services />

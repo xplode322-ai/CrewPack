@@ -14,38 +14,45 @@ export interface Project {
   accent: string;
   /** Tailwind background color for the ambient glow. */
   glow: string;
+  /** Grid placement classes for the asymmetrical bento layout. */
+  span: string;
+  /** Marks the large feature card for scaled typography. */
+  large?: boolean;
   stats: ProjectStat[];
 }
 
 export const projects: Project[] = [
+  {
+    category: "iGaming",
+    title: "Sportsbook Scale-Up",
+    description:
+      "Casino and sportsbook audiences that convert around the clock — fuelled by high-stakes matchday moments.",
+    image:
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=80",
+    accent: "text-neon-violet",
+    glow: "bg-neon-violet/25",
+    span: "md:col-span-2 md:row-span-2",
+    large: true,
+    stats: [
+      { value: 5.1, suffix: "M", label: "Impressions / mo" },
+      { value: 4.2, suffix: "%", label: "Avg. CTR" },
+      { value: 25, suffix: "+", label: "Geos" },
+    ],
+  },
   {
     category: "Crypto",
     title: "Exchange Launch",
     description:
       "High-intent traders and Web3 audiences across tier-1 and emerging markets.",
     image:
-      "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=900&q=80",
     accent: "text-neon-cyan",
     glow: "bg-neon-cyan/25",
+    span: "md:col-span-1 md:row-span-1",
     stats: [
       { value: 2.4, suffix: "M", label: "Impressions / mo" },
       { value: 3.8, suffix: "%", label: "Avg. CTR" },
       { value: 40, suffix: "+", label: "Geos" },
-    ],
-  },
-  {
-    category: "iGaming",
-    title: "Sportsbook Scale-Up",
-    description:
-      "Casino and sportsbook audiences that convert around the clock.",
-    image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
-    accent: "text-neon-violet",
-    glow: "bg-neon-violet/25",
-    stats: [
-      { value: 5.1, suffix: "M", label: "Impressions / mo" },
-      { value: 4.2, suffix: "%", label: "Avg. CTR" },
-      { value: 25, suffix: "+", label: "Geos" },
     ],
   },
   {
@@ -54,9 +61,10 @@ export const projects: Project[] = [
     description:
       "Health, beauty and wellness buyers ready for direct-response offers.",
     image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=900&q=80",
     accent: "text-neon-fuchsia",
     glow: "bg-neon-fuchsia/25",
+    span: "md:col-span-1 md:row-span-1",
     stats: [
       { value: 1.8, suffix: "M", label: "Impressions / mo" },
       { value: 2.9, suffix: "%", label: "Avg. CTR" },

@@ -27,9 +27,13 @@ export function Projects() {
           description="Campaigns engineered for high-intent audiences across crypto, iGaming and nutra."
         />
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 md:grid-rows-2 md:h-[560px] lg:h-[640px]">
           {projects.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.12} className="h-full">
+            <Reveal
+              key={p.title}
+              delay={i * 0.1}
+              className={cn("h-full", p.span)}
+            >
               <TiltCard className="h-full">
                 {/* Background image with dark blend */}
                 <img
@@ -37,21 +41,27 @@ export function Projects() {
                   alt={p.title}
                   loading="lazy"
                   draggable={false}
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-80 mix-blend-multiply"
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover mix-blend-multiply"
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/70 to-[#09090b]/30"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#09090b] to-[#09090b]/40"
                 />
                 <div
                   aria-hidden
                   className={cn(
-                    "pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-60 blur-3xl",
+                    "pointer-events-none absolute -right-10 -top-10 rounded-full opacity-60 blur-3xl",
+                    p.large ? "h-44 w-44" : "h-32 w-32",
                     p.glow
                   )}
                 />
 
-                <div className="relative z-10 flex h-full flex-col p-7">
+                <div
+                  className={cn(
+                    "relative z-10 flex h-full flex-col",
+                    p.large ? "p-8 sm:p-10" : "p-6 sm:p-7"
+                  )}
+                >
                   <div className="flex items-center justify-between">
                     <span
                       className={cn(
@@ -66,20 +76,40 @@ export function Projects() {
                     </span>
                   </div>
 
-                  <h3 className="mt-6 font-display text-2xl font-bold tracking-tight text-white">
+                  <h3
+                    className={cn(
+                      "mt-6 font-display font-bold tracking-tight text-white",
+                      p.large ? "text-3xl sm:text-4xl" : "text-2xl"
+                    )}
+                  >
                     {p.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  <p
+                    className={cn(
+                      "mt-2 leading-relaxed text-slate-400",
+                      p.large ? "text-base" : "text-sm"
+                    )}
+                  >
                     {p.description}
                   </p>
 
-                  <div className="mt-auto grid grid-cols-3 gap-3 pt-8">
+                  <div
+                    className={cn(
+                      "mt-auto grid grid-cols-3 gap-3",
+                      p.large ? "pt-10" : "pt-8"
+                    )}
+                  >
                     {p.stats.map((s) => (
                       <div
                         key={s.label}
                         className="rounded-xl border border-white/5 bg-[#09090b]/50 p-3 text-center backdrop-blur"
                       >
-                        <div className="font-display text-xl font-bold text-white sm:text-2xl">
+                        <div
+                          className={cn(
+                            "font-display font-bold text-white",
+                            p.large ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"
+                          )}
+                        >
                           <AnimatedNumber value={s.value} />
                           <span className={p.accent}>{s.suffix}</span>
                         </div>
