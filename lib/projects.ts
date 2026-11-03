@@ -1,13 +1,19 @@
+/**
+ * Presentation metadata for the Projects (Verticals & Results) grid.
+ *
+ * All translatable copy (category, title, description, stat labels) lives in
+ * `lib/dictionaries.ts` and is resolved at render time via `useLanguage()`.
+ * This file only holds visual/layout concerns. The `id` on each entry is the
+ * key used to look up its localized copy.
+ */
+
 export interface ProjectStat {
   value: number;
   suffix: string;
-  label: string;
 }
 
 export interface Project {
-  category: string;
-  title: string;
-  description: string;
+  id: string;
   /** Premium dark tech/abstract image used as the card backdrop. */
   image: string;
   /** Tailwind text color for accents. */
@@ -27,10 +33,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    category: "iGaming",
-    title: "Sportsbook Scale-Up",
-    description:
-      "Casino and sportsbook audiences that convert around the clock — fuelled by high-stakes matchday moments. We leverage dynamic odds integration, real-time trigger events, and VIP retention strategies to maximize player LTV and scale first-time deposits.",
+    id: "sportsbook",
     image:
       "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=80",
     accent: "text-neon-violet",
@@ -40,32 +43,26 @@ export const projects: Project[] = [
     overlayClassName: "from-[#09090b] via-[#09090b]/55 to-[#09090b]/80",
     large: true,
     stats: [
-      { value: 100, suffix: "M+", label: "Impressions / mo" },
-      { value: 4.2, suffix: "%", label: "Avg. CTR" },
-      { value: 25, suffix: "+", label: "Geos" },
+      { value: 100, suffix: "M+" },
+      { value: 4.2, suffix: "%" },
+      { value: 25, suffix: "+" },
     ],
   },
   {
-    category: "Crypto",
-    title: "Exchange Launch",
-    description:
-      "High-intent traders and Web3 audiences across tier-1 and emerging markets.",
+    id: "exchange",
     image:
       "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=900&q=80",
     accent: "text-neon-cyan",
     glow: "bg-neon-cyan/25",
     span: "md:col-span-1 md:row-span-1",
     stats: [
-      { value: 20, suffix: "M+", label: "Impressions / mo" },
-      { value: 3.8, suffix: "%", label: "Avg. CTR" },
-      { value: 40, suffix: "+", label: "Geos" },
+      { value: 20, suffix: "M+" },
+      { value: 3.8, suffix: "%" },
+      { value: 40, suffix: "+" },
     ],
   },
   {
-    category: "Nutra",
-    title: "Direct-Response Nutra",
-    description:
-      "Health, beauty and wellness buyers ready for direct-response offers.",
+    id: "nutra",
     image:
       "https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=900&q=80",
     accent: "text-neon-fuchsia",
@@ -73,9 +70,9 @@ export const projects: Project[] = [
     span: "md:col-span-1 md:row-span-1",
     imagePosition: "object-center",
     stats: [
-      { value: 12, suffix: "M+", label: "Impressions / mo" },
-      { value: 2.9, suffix: "%", label: "Avg. CTR" },
-      { value: 15, suffix: "+", label: "Geos" },
+      { value: 12, suffix: "M+" },
+      { value: 2.9, suffix: "%" },
+      { value: 15, suffix: "+" },
     ],
   },
 ];

@@ -9,8 +9,11 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 import { Sparkles } from "@/components/ui/sparkles";
 import { GlowOrb } from "@/components/ui/glow-orb";
 import { Footer } from "@/components/sections/footer";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function CTA() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className={cn(SNAP_SECTION, "overflow-hidden")}>
       <div className="flex w-full flex-1 flex-col items-center justify-center px-5 py-24 sm:px-8">
@@ -25,14 +28,14 @@ export function CTA() {
 
             <div className="relative z-10">
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neon-cyan">
-                Contact
+                {t.cta.eyebrow}
               </p>
               <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-                Ready for <span className="text-gradient">exclusive deals?</span>
+                {t.cta.title.line1}{" "}
+                <span className="text-gradient">{t.cta.title.accent}</span>
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-400">
-                Tell us your niche, geo and volumes — our team will get back to
-                you with the best placements and the lowest market commissions.
+                {t.cta.description}
               </p>
 
               <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">

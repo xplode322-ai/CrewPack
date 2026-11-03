@@ -9,18 +9,12 @@ import { useScrollController } from "@/components/providers/scroll-provider";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-
-const links = [
-  { label: "Ad Formats", href: "#ad-formats" },
-  { label: "Services", href: "#services" },
-  { label: "Influencers", href: "#influencers" },
-  { label: "Verticals", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const { scrollTo: navigate, activeIndex } = useScrollController();
+  const { t } = useLanguage();
   const scrolled = activeIndex > 0;
 
   function scrollTo(href: string) {
@@ -65,7 +59,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-6 md:flex">
           <div className="flex items-center gap-8 text-sm font-medium text-slate-300">
-            {links.map((l) => (
+            {t.nav.links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -84,7 +78,7 @@ export function Navbar() {
 
           <MagneticButton>
             <Button variant="glow" size="sm" onClick={() => scrollTo("#contact")}>
-              Get Traffic
+              {t.nav.getTraffic}
             </Button>
           </MagneticButton>
         </div>
@@ -109,7 +103,7 @@ export function Navbar() {
             className="overflow-hidden border-t border-white/5 bg-[#09090b]/95 backdrop-blur-xl md:hidden"
           >
             <div className="flex flex-col gap-1 px-5 py-4 text-sm font-medium text-slate-200">
-              {links.map((l) => (
+              {t.nav.links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
@@ -130,7 +124,7 @@ export function Navbar() {
                 className="mt-3 w-full"
                 onClick={() => scrollTo("#contact")}
               >
-                Get Traffic
+                {t.nav.getTraffic}
               </Button>
             </div>
           </motion.div>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { ScrollProvider } from "@/components/providers/scroll-provider";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,7 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-body`}>
-        <ScrollProvider>{children}</ScrollProvider>
+        <LanguageProvider>
+          <ScrollProvider>{children}</ScrollProvider>
+        </LanguageProvider>
         <div
           aria-hidden
           className="noise pointer-events-none fixed inset-0 z-[100] opacity-[0.035]"

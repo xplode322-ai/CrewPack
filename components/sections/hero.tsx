@@ -12,22 +12,13 @@ import { AnimatedNumber } from "@/components/ui/animated-number";
 import { Marquee } from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { useLanguage } from "@/context/LanguageContext";
 
-const stats = [
-  { value: 2500, suffix: "+", label: "Exclusive WebSites", accent: "text-neon-cyan" },
-  { value: 100, suffix: "+", label: "Countries covered", accent: "text-neon-violet" },
-  { value: 100, suffix: "%", label: "Direct with WebMasters", accent: "text-neon-cyan" },
-];
-
-const ticker = [
-  "Crypto",
-  "iGaming",
-  "Nutra",
-  "Organic Traffic",
-  "Direct WebMasters",
-  "Lowest Commissions",
-  "Worldwide Coverage",
-  "2500+ Exclusive WebSites",
+/** Numeric/visual metadata only — labels come from the active dictionary. */
+const statsMeta = [
+  { value: 2500, suffix: "+", accent: "text-neon-cyan" },
+  { value: 100, suffix: "+", accent: "text-neon-violet" },
+  { value: 100, suffix: "%", accent: "text-neon-cyan" },
 ];
 
 function TickerItem({ text }: { text: string }) {
@@ -40,6 +31,12 @@ function TickerItem({ text }: { text: string }) {
 }
 
 export function Hero() {
+  const { t } = useLanguage();
+  const stats = statsMeta.map((s, i) => ({
+    ...s,
+    label: t.hero.statLabels[i],
+  }));
+
   return (
     <section
       id="home"
@@ -73,7 +70,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon-cyan opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-neon-cyan" />
               </span>
-              Worldwide coverage · Crypto · iGaming · Nutra
+              {t.hero.badge}
               <span className="animate-pulse text-blue-500">●</span>
             </div>
           </Reveal>
@@ -103,12 +100,12 @@ export function Hero() {
           {/* Headline */}
           <h1 className="mt-2 font-display text-[2.5rem] font-bold leading-[1.15] tracking-tight text-white sm:text-6xl lg:text-7xl">
             <span className="block">
-              <TextReveal text="Global Web Traffic" />
+              <TextReveal text={t.hero.headline.line1} />
             </span>
             <span className="block">
               <TextReveal
-                text="Buying Agency"
-                accentWords={["Agency"]}
+                text={t.hero.headline.line2}
+                accentWords={t.hero.headline.accentWords}
                 delay={0.25}
               />
             </span>
@@ -117,8 +114,7 @@ export function Hero() {
           {/* Subheadline */}
           <Reveal delay={0.5}>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
-              Exclusive organic traffic direct from WebMasters. Worldwide coverage,
-              lowest market commissions.
+              {t.hero.subheadline}
             </p>
           </Reveal>
 
@@ -128,14 +124,14 @@ export function Hero() {
               <MagneticButton>
                 <Button variant="glow" size="lg" asChild>
                   <a href="#contact">
-                    Get Traffic
+                    {t.hero.cta.primary}
                     <ArrowRight className="h-4 w-4" />
                   </a>
                 </Button>
               </MagneticButton>
               <MagneticButton>
                 <Button variant="ghost" size="lg" asChild>
-                  <a href="#contact">Become a Partner</a>
+                  <a href="#contact">{t.hero.cta.secondary}</a>
                 </Button>
               </MagneticButton>
             </div>
@@ -166,8 +162,8 @@ export function Hero() {
           speed={32}
           className="py-4 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
         >
-          {ticker.map((t) => (
-            <TickerItem key={t} text={t} />
+          {t.hero.ticker.map((text) => (
+            <TickerItem key={text} text={text} />
           ))}
         </Marquee>
       </div>

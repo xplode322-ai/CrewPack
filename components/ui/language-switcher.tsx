@@ -5,28 +5,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { EASE } from "@/lib/motion";
-
-export interface Language {
-  code: string;
-  label: string;
-  short: string;
-}
-
-const LANGUAGES: Language[] = [
-  { code: "en", label: "English", short: "EN" },
-  { code: "ru", label: "Русский", short: "RU" },
-  { code: "es", label: "Español", short: "ES" },
-  { code: "ua", label: "Українська", short: "UA" },
-];
+import { languages, type Language } from "@/lib/dictionaries";
+import { useLanguage } from "@/context/LanguageContext";
 
 /**
- * Premium glassmorphic language selector. Tracks the active locale in local
- * state for now — the translation dictionary / routing is wired up later.
+ * Premium glassmorphic language selector. Reads and writes the active locale
+ * through `LanguageContext`, so switching updates the whole presentation
+ * instantly without a reload.
  */
 export function LanguageSwitcher({ className }: { className?: string }) {
+  const { lang, setLang } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<Language>(LANGUAGES[0]);
   const ref = useRef<HTMLDivElement>(null);
+
+  const active = languages.find((l) => l.code === lang) ?? languages[0];
 
   // Close on outside click / Escape.
   useEffect(() => {
@@ -48,8 +40,8 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     };
   }, []);
 
-  function select(lang: Language) {
-    setActive(lang);
+  function select(next: Language) {
+    setLang(next);
     setOpen(false);
   }
 
@@ -86,13 +78,13 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             transition={{ duration: 0.18, ease: EASE }}
             className="absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-xl border border-white/10 bg-[#0b0b12]/90 p-1 shadow-2xl shadow-black/60 backdrop-blur-xl"
           >
-            {LANGUAGES.map((lang) => {
+            {languages.map((lang) => {
               const isActive = lang.code === active.code;
               return (
                 <li key={lang.code} role="option" aria-selected={isActive}>
                   <button
                     type="button"
-                    onClick={() => select(lang)}
+                    onClick={() => select(lang.code)}
                     className={cn(
                       "flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm transition-colors duration-200",
                       isActive

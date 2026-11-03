@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { Mail, MessageCircle } from "lucide-react";
 import { useScrollController } from "@/components/providers/scroll-provider";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Footer() {
   const { scrollTo } = useScrollController();
+  const { t } = useLanguage();
 
   function toTop(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
@@ -29,8 +31,8 @@ export function Footer() {
         </a>
 
         <p className="text-center text-sm text-slate-500">
-          © {new Date().getFullYear()} CrewPack.Agency. All rights reserved. ·
-          Global Web Traffic Buying Agency
+          © {new Date().getFullYear()} CrewPack.Agency. {t.footer.rights} ·
+          {t.footer.tagline}
         </p>
 
         <div className="flex items-center gap-3 text-slate-400">

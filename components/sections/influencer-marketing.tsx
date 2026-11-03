@@ -17,6 +17,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { Sparkles } from "@/components/ui/sparkles";
 import { GlowOrb } from "@/components/ui/glow-orb";
 import { AnimatedNumber } from "@/components/ui/animated-number";
+import { useLanguage } from "@/context/LanguageContext";
 
 const platforms = [
   { name: "Twitch", icon: Twitch, color: "text-violet-400", glow: "group-hover:border-violet-400/50 group-hover:shadow-[0_0_40px_-12px_rgba(167,139,250,0.5)]" },
@@ -27,12 +28,14 @@ const platforms = [
 ];
 
 const microStats = [
-  { icon: TrendingUp, value: 3.5, suffix: "×", label: "Avg. growth", accent: "text-neon-cyan" },
-  { icon: Zap, value: 48, suffix: "h-72h", label: "Launch window", accent: "text-neon-violet" },
-  { icon: Users, value: 100, suffix: "%", label: "Organic", accent: "text-neon-fuchsia" },
+  { icon: TrendingUp, value: 3.5, suffix: "×", accent: "text-neon-cyan" },
+  { icon: Zap, value: 48, suffix: "h-72h", accent: "text-neon-violet" },
+  { icon: Users, value: 100, suffix: "%", accent: "text-neon-fuchsia" },
 ];
 
 export function InfluencerMarketing() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="influencers"
@@ -49,13 +52,14 @@ export function InfluencerMarketing() {
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8">
         <SectionHeading
           align="center"
-          eyebrow="Influencer & Web3 Marketing"
+          eyebrow={t.influencers.eyebrow}
           title={
             <>
-              Communities that <span className="text-gradient">convert</span>
+              {t.influencers.title.line1}{" "}
+              <span className="text-gradient">{t.influencers.title.accent}</span>
             </>
           }
-          description="We recruit KOLs, build owned communities across the platforms that actually move attention, and maintain a dedicated database of TikTok clippers to scale advertiser brands."
+          description={t.influencers.description}
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
@@ -67,13 +71,12 @@ export function InfluencerMarketing() {
               <AnimatedNumber value={70} suffix="K" />
             </div>
             <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-base">
-              Organic members, scaled per campaign — from niche KOL seeding to
-              full-blown community takeovers.
+              {t.influencers.membersLine}
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
               {microStats.map((m, i) => (
-                <Reveal key={m.label} delay={i * 0.07}>
+                <Reveal key={t.influencers.microStats[i]} delay={i * 0.07}>
                   <div className="group flex h-full flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:border-white/20">
                     <m.icon
                       className={cn(
@@ -86,7 +89,7 @@ export function InfluencerMarketing() {
                       <span className={m.accent}>{m.suffix}</span>
                     </div>
                     <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
-                      {m.label}
+                      {t.influencers.microStats[i]}
                     </div>
                   </div>
                 </Reveal>
@@ -125,7 +128,7 @@ export function InfluencerMarketing() {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-neon-cyan" />
                 </span>
                 <span className="text-xs font-medium uppercase tracking-wider">
-                  + more
+                  {t.influencers.more}
                 </span>
               </div>
             </Reveal>
