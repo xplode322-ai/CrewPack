@@ -51,7 +51,7 @@ export function Navbar() {
         >
           <span className="relative grid h-8 w-8 place-items-center">
             <Image
-              src="/logo21.png"
+              src="/logo111.png"
               alt="CrewPack.Agency logo"
               width={32}
               height={32}

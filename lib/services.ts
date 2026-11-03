@@ -35,9 +35,9 @@ export interface Service {
 export const services: Service[] = [
   {
     id: "direct-admin-deals",
-    title: "Direct Admin Deals",
+    title: "Direct WebMaster Deals",
     description:
-      "No middlemen. No inflated margins. We handle all payments via local solutions for admin convenience (USDT, bank transfers, local cards), assist with ad code installation, and negotiate exclusive cooperation terms (prepayment, or post-payment based on advertiser statistics). Our team operates 24/7, always online to onboard new admins and advertisers seamlessly.",
+      "No middlemen. No inflated margins. We handle all payments via local solutions for WebMaster convenience (USDT, bank transfers, local cards), assist with ad code installation, and negotiate exclusive cooperation terms (prepayment, or post-payment based on advertiser statistics). Our team operates 24/7, always online to onboard new WebMasters and advertisers seamlessly.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
     icon: Handshake,
@@ -47,16 +47,16 @@ export const services: Service[] = [
     stat: {
       value: 2500,
       suffix: "+",
-      label: "exclusive sites negotiated directly with admins",
+      label: "exclusive WebSites negotiated directly with WebMasters",
     },
     tags: [
       "Sports News",
       "Global News",
-      "Crypto Sites",
+      "Crypto WebSites",
       "Adult",
       "File Sharing",
       "Forums",
-      "Rating Sites",
+      "Rating WebSites",
       "Linkbuilding",
       "Social Media",
       "TikTok Clippers",
@@ -89,7 +89,7 @@ export const services: Service[] = [
   {
     id: "scraping",
     title: "Proprietary Scraping",
-    description: "Custom-built scrapers find the exact sites you need, anywhere.",
+    description: "Custom-built scrapers find the exact WebSites you need, anywhere.",
     image:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80",
     icon: Cpu,
@@ -100,7 +100,7 @@ export const services: Service[] = [
     id: "pricing",
     title: "Flexible Pricing",
     description:
-      "We operate exclusively on CPM, CPC, and Flat Fee models. While many admins require prepayment, we negotiate exceptions for post-payment based on advertiser statistics.",
+      "We operate exclusively on CPM, CPC, and Flat Fee models. While many WebMasters require prepayment, we negotiate exceptions for post-payment based on advertiser statistics.",
     image:
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=80",
     icon: BadgeDollarSign,

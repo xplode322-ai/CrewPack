@@ -17,7 +17,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
         <a href="#home" onClick={toTop} className="flex items-center gap-2.5">
           <Image
-            src="/logo21.png"
+            src="/logo111.png"
             alt="CrewPack.Agency logo"
             width={32}
             height={32}

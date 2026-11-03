@@ -14,9 +14,9 @@ import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 const stats = [
-  { value: 2500, suffix: "+", label: "Exclusive sites", accent: "text-neon-cyan" },
+  { value: 2500, suffix: "+", label: "Exclusive WebSites", accent: "text-neon-cyan" },
   { value: 100, suffix: "+", label: "Countries covered", accent: "text-neon-violet" },
-  { value: 100, suffix: "%", label: "Direct with admins", accent: "text-neon-cyan" },
+  { value: 100, suffix: "%", label: "Direct with WebMasters", accent: "text-neon-cyan" },
 ];
 
 const ticker = [
@@ -24,10 +24,10 @@ const ticker = [
   "iGaming",
   "Nutra",
   "Organic Traffic",
-  "Direct Admins",
+  "Direct WebMasters",
   "Lowest Commissions",
   "Worldwide Coverage",
-  "2500+ Exclusive Sites",
+  "2500+ Exclusive WebSites",
 ];
 
 function TickerItem({ text }: { text: string }) {
@@ -90,7 +90,7 @@ export function Hero() {
                 className="absolute inset-0 -z-10 scale-125 rounded-full bg-neon-cyan/25 blur-3xl"
               />
               <Image
-                src="/logo.png"
+                src="/logo111.png"
                 alt="CrewPack.Agency logo"
                 width={128}
                 height={128}
@@ -117,7 +117,7 @@ export function Hero() {
           {/* Subheadline */}
           <Reveal delay={0.5}>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg">
-              Exclusive organic traffic direct from admins. Worldwide coverage,
+              Exclusive organic traffic direct from WebMasters. Worldwide coverage,
               lowest market commissions.
             </p>
           </Reveal>
