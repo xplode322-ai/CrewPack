@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "CrewPack.Agency — Global Web Traffic Buying Agency",
   description:
     "Exclusive organic traffic direct from WebMasters. Crypto, iGaming and Nutra. Worldwide coverage, lowest market commissions.",
+  icons: { icon: "/favicon.png" },
 };
 
 export const viewport: Viewport = {
