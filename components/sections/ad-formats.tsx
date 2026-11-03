@@ -13,8 +13,10 @@ interface AdFormat {
   description: string;
   cr: string;
   icon: LucideIcon;
-  /** Tailwind text color for the icon and CR accent. */
+  /** Tailwind text color for the card icon. */
   accent: string;
+  /** Tailwind text color for the CR badge number. */
+  badgeColor: string;
   /** Tailwind background color for the ambient glow. */
   glow: string;
   /** Grid placement classes for the responsive layout. */
@@ -31,6 +33,7 @@ const formats: AdFormat[] = [
     cr: "1-4%",
     icon: Monitor,
     accent: "text-neon-cyan",
+    badgeColor: "text-neon-cyan",
     glow: "bg-neon-cyan/25",
     span: "md:col-span-1 lg:col-span-2",
     image:
@@ -43,6 +46,7 @@ const formats: AdFormat[] = [
     cr: "3-7%",
     icon: MonitorPlay,
     accent: "text-neon-violet",
+    badgeColor: "text-neon-cyan",
     glow: "bg-neon-violet/25",
     span: "md:col-span-1 lg:col-span-2",
     image:
@@ -55,6 +59,7 @@ const formats: AdFormat[] = [
     cr: "8-15%",
     icon: FileText,
     accent: "text-neon-blue",
+    badgeColor: "text-neon-cyan",
     glow: "bg-neon-blue/25",
     span: "md:col-span-1 lg:col-span-2",
     image:
@@ -66,6 +71,7 @@ const formats: AdFormat[] = [
     cr: "2-5%",
     icon: Share2,
     accent: "text-neon-fuchsia",
+    badgeColor: "text-neon-fuchsia",
     glow: "bg-neon-fuchsia/25",
     span: "md:col-span-1 lg:col-span-3",
     image:
@@ -78,6 +84,7 @@ const formats: AdFormat[] = [
     cr: "10-25%",
     icon: Mic,
     accent: "text-neon-cyan",
+    badgeColor: "text-neon-cyan",
     glow: "bg-neon-cyan/25",
     span: "md:col-span-2 lg:col-span-3",
     image:
@@ -138,7 +145,7 @@ export function AdFormats() {
                     </span>
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold backdrop-blur">
                       <span className="font-medium text-zinc-400">CR</span>
-                      <span className={f.accent}>{f.cr}</span>
+                      <span className={f.badgeColor}>{f.cr}</span>
                     </span>
                   </div>
 
