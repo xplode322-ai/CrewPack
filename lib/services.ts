@@ -18,7 +18,9 @@ export interface Service {
   title: string;
   description: string;
   /** Premium dark tech/abstract image used as the card backdrop. */
-  image: string;
+  image?: string;
+  /** Multiple backdrop images split into equal vertical columns. */
+  backgrounds?: string[];
   icon: LucideIcon;
   /** Tailwind text color used for the icon and numeric accents. */
   accent: string;
@@ -35,7 +37,7 @@ export const services: Service[] = [
     id: "direct-admin-deals",
     title: "Direct Admin Deals",
     description:
-      "No middlemen. No inflated margins. We handle all payments via local solutions for admin convenience (USDT, bank transfers, local cards), assist with ad code installation, and negotiate exclusive cooperation terms (prepayment, or post-payment based on advertiser statistics).",
+      "No middlemen. No inflated margins. We handle all payments via local solutions for admin convenience (USDT, bank transfers, local cards), assist with ad code installation, and negotiate exclusive cooperation terms (prepayment, or post-payment based on advertiser statistics). Our team operates 24/7, always online to onboard new admins and advertisers seamlessly.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
     icon: Handshake,
@@ -63,13 +65,15 @@ export const services: Service[] = [
   {
     id: "verticals",
     title: "High-Intent Verticals",
-    description: "Three niches, one standard.",
-    image:
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=900&q=80",
+    description: "Three niches, one standard: Crypto, iGaming, Nutra.",
+    backgrounds: [
+      "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=600&q=70",
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=70",
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=70",
+    ],
     icon: Dices,
     accent: "text-neon-violet",
     spotColor: "rgba(168, 85, 247, 0.16)",
-    tags: ["Crypto", "iGaming", "Nutra"],
   },
   {
     id: "global-coverage",
@@ -95,13 +99,13 @@ export const services: Service[] = [
   {
     id: "pricing",
     title: "Flexible Pricing",
-    description: "Pick the model that fits your goals.",
+    description:
+      "We operate exclusively on CPM, CPC, and Flat Fee models. While many admins require prepayment, we negotiate exceptions for post-payment based on advertiser statistics.",
     image:
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=80",
     icon: BadgeDollarSign,
     accent: "text-neon-fuchsia",
     spotColor: "rgba(217, 70, 239, 0.14)",
     span: "md:col-span-2",
-    tags: ["CPM", "CPC", "Flat fee"],
   },
 ];

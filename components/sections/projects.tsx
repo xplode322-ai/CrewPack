@@ -13,7 +13,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className={cn(SNAP_SECTION, "overflow-hidden bg-[#09090b] py-20")}
+      className={cn(SNAP_SECTION, "overflow-hidden py-20")}
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <SectionHeading
@@ -69,12 +69,7 @@ export function Projects() {
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span
-                      className={cn(
-                        "rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-wider backdrop-blur",
-                        p.accent
-                      )}
-                    >
+                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-wider text-neon-cyan backdrop-blur">
                       {p.category}
                     </span>
                     <span className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-400 transition-all duration-300 group-hover:border-white/30 group-hover:text-white">

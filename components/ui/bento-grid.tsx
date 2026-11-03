@@ -34,6 +34,8 @@ interface BentoCardProps {
   delay?: number;
   /** Optional dark background image with a heavy gradient overlay. */
   image?: string;
+  /** Multiple backdrop images split into equal vertical columns. */
+  backgrounds?: string[];
 }
 
 /**
@@ -50,6 +52,7 @@ export function BentoCard({
   spotColor,
   delay = 0,
   image,
+  backgrounds,
 }: BentoCardProps) {
   return (
     <SpotlightCard
@@ -57,6 +60,7 @@ export function BentoCard({
       spotColor={spotColor}
       delay={delay}
       image={image}
+      backgrounds={backgrounds}
       imageClassName="opacity-40 mix-blend-multiply"
       overlayClassName="bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent"
     >

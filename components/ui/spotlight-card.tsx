@@ -20,6 +20,8 @@ interface SpotlightCardProps {
   delay?: number;
   /** Optional background image rendered behind the spotlight glow. */
   image?: string;
+  /** Multiple backdrop images split into equal vertical columns. */
+  backgrounds?: string[];
   /** Alt text for the background image (defaults to empty for decoration). */
   imageAlt?: string;
   /** Classes applied to the `<img>` element. */
@@ -40,6 +42,7 @@ export function SpotlightCard({
   spotSize = 360,
   delay = 0,
   image,
+  backgrounds,
   imageAlt = "",
   imageClassName,
   overlayClassName,
@@ -72,6 +75,23 @@ export function SpotlightCard({
         className
       )}
     >
+      {backgrounds && backgrounds.length > 0 && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 grid grid-cols-3"
+        >
+          {backgrounds.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt=""
+              loading="lazy"
+              draggable={false}
+              className={cn("h-full w-full object-cover", imageClassName)}
+            />
+          ))}
+        </div>
+      )}
       {image && (
         <img
           src={image}
@@ -84,7 +104,7 @@ export function SpotlightCard({
           )}
         />
       )}
-      {image && (
+      {(image || (backgrounds && backgrounds.length > 0)) && (
         <div
           aria-hidden
           className={cn(

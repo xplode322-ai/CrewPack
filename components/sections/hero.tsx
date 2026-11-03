@@ -3,8 +3,6 @@
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SNAP_SECTION } from "@/lib/section";
-import { DotPattern } from "@/components/ui/dot-pattern";
-import { Sparkles } from "@/components/ui/sparkles";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { Reveal } from "@/components/ui/reveal";
 import { GlowOrb } from "@/components/ui/glow-orb";
@@ -45,15 +43,9 @@ export function Hero() {
       id="home"
       className={cn(
         SNAP_SECTION,
-        "isolate overflow-hidden bg-[#09090b]"
+        "isolate overflow-hidden"
       )}
     >
-      {/* ---------- Background layers ---------- */}
-      <div className="absolute inset-0 -z-10">
-        <div className="bg-grid mask-radial-faded absolute inset-0" aria-hidden />
-        <DotPattern className="text-white/[0.07]" fade />
-        <Sparkles className="opacity-80" count={36} />
-      </div>
       <GlowOrb
         className="left-[-10%] top-[-12%] h-[420px] w-[420px]"
         color="bg-neon-cyan/20"
@@ -74,17 +66,18 @@ export function Hero() {
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           {/* Badge */}
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1.5 text-sm font-medium tracking-wide text-slate-300 backdrop-blur">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon-cyan opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-neon-cyan" />
               </span>
               Worldwide coverage · Crypto · iGaming · Nutra
+              <span className="animate-pulse text-blue-500">●</span>
             </div>
           </Reveal>
 
           {/* Headline */}
-          <h1 className="mt-8 font-display text-[2.5rem] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-8 font-display text-[2.5rem] font-bold leading-[1.12] tracking-tight text-white sm:text-6xl lg:text-7xl">
             <span className="block">
               <TextReveal text="Global Web Traffic" />
             </span>

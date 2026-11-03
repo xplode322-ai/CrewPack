@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import { animate } from "framer-motion";
 import { useScrollController } from "@/components/providers/scroll-provider";
+import { DotPattern } from "@/components/ui/dot-pattern";
+import { Sparkles } from "@/components/ui/sparkles";
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
@@ -158,6 +160,12 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      {/* Global animated tech background — fixed behind all snap sections. */}
+      <div aria-hidden className="fixed inset-0 -z-10 bg-[#09090b]">
+        <div className="bg-grid mask-radial-faded absolute inset-0" />
+        <DotPattern className="text-white/[0.07]" fade />
+        <Sparkles className="opacity-80" count={36} />
+      </div>
       <main ref={wrapperRef} className="h-screen overflow-hidden overscroll-none">
         <div ref={contentRef}>
           <Hero />

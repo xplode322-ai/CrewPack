@@ -31,6 +31,7 @@ export function Services() {
               title={s.title}
               description={s.description}
               image={s.image}
+              backgrounds={s.backgrounds}
               spotColor={s.spotColor}
               delay={i * 0.06}
               icon={<s.icon className={cn("h-6 w-6", s.accent)} />}

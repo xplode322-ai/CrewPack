@@ -36,7 +36,7 @@ export function InfluencerMarketing() {
   return (
     <section
       id="influencers"
-      className={cn(SNAP_SECTION, "overflow-hidden bg-[#09090b] py-20")}
+      className={cn(SNAP_SECTION, "overflow-hidden py-20")}
     >
       {/* Ambient network glow */}
       <GlowOrb
@@ -72,20 +72,24 @@ export function InfluencerMarketing() {
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
-              {microStats.map((m) => (
-                <div
-                  key={m.label}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur"
-                >
-                  <m.icon className={cn("mx-auto h-5 w-5", m.accent)} />
-                  <div className="mt-2 font-display text-xl font-bold text-white sm:text-2xl">
-                    <AnimatedNumber value={m.value} />
-                    <span className={m.accent}>{m.suffix}</span>
+              {microStats.map((m, i) => (
+                <Reveal key={m.label} delay={i * 0.07}>
+                  <div className="group flex h-full flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:border-white/20">
+                    <m.icon
+                      className={cn(
+                        "mx-auto h-5 w-5 transition-transform duration-500 group-hover:scale-110",
+                        m.accent
+                      )}
+                    />
+                    <div className="mt-2 font-display text-xl font-bold text-white sm:text-2xl">
+                      <AnimatedNumber value={m.value} />
+                      <span className={m.accent}>{m.suffix}</span>
+                    </div>
+                    <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
+                      {m.label}
+                    </div>
                   </div>
-                  <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
-                    {m.label}
-                  </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </Reveal>
