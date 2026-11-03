@@ -199,7 +199,7 @@ export default function Home() {
       <div aria-hidden className="fixed inset-0 -z-10 bg-[#09090b]">
         <div className="bg-grid mask-radial-faded absolute inset-0" />
         <DotPattern className="text-white/[0.07]" fade />
-        <Sparkles className="opacity-80" count={36} />
+        <Sparkles className="opacity-80" count={180} />
       </div>
       <main ref={wrapperRef} className="h-screen overflow-hidden overscroll-none">
         <div ref={contentRef}>

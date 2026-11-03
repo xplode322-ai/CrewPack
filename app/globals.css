@@ -109,6 +109,29 @@ html.lenis body {
   }
 }
 
+/* Twinkling particle animation (Sparkles component).
+   Only opacity + transform are animated so the browser can run it on the
+   compositor thread — safe at high particle counts. */
+@keyframes sparkle-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+.sparkle {
+  animation-name: sparkle-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  /* Composition hint so the layer is promoted once, not per-frame. */
+  transform: translateZ(0);
+}
+
 /* ------------------------------------------------------------------
    Utilities
 ------------------------------------------------------------------- */
