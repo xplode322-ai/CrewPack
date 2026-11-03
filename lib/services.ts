@@ -3,28 +3,14 @@ import {
   BadgeDollarSign,
   Cpu,
   Dices,
-  FileText,
   Globe2,
   Handshake,
-  Megaphone,
-  Mic,
-  Monitor,
-  MonitorPlay,
-  Share2,
 } from "lucide-react";
 
 export interface ServiceStat {
   value: number;
   suffix: string;
   label: string;
-}
-
-/** A single ad format with its realistic conversion-rate benchmark. */
-export interface AdFormat {
-  name: string;
-  description: string;
-  cr: string;
-  icon: LucideIcon;
 }
 
 export interface Service {
@@ -44,8 +30,6 @@ export interface Service {
   span?: string;
   stat?: ServiceStat;
   tags?: string[];
-  /** Detailed list of ad formats with conversion-rate benchmarks. */
-  formats?: AdFormat[];
 }
 
 export const services: Service[] = [
@@ -123,51 +107,5 @@ export const services: Service[] = [
     accent: "text-neon-fuchsia",
     spotColor: "rgba(217, 70, 239, 0.14)",
     span: "md:col-span-2",
-  },
-  {
-    id: "ad-formats",
-    title: "High-Converting Ad Formats",
-    description:
-      "Five battle-tested formats engineered for conversion — each with a realistic CR benchmark.",
-    icon: Megaphone,
-    accent: "text-neon-cyan",
-    spotColor: "rgba(34, 211, 238, 0.14)",
-    span: "md:col-span-3",
-    formats: [
-      {
-        name: "Display & Site Branding",
-        description:
-          "Premium banners and full-site branding for maximum visibility.",
-        cr: "1-4%",
-        icon: Monitor,
-      },
-      {
-        name: "Interactive & Video",
-        description:
-          "Persistent Catfish/Stickers and captive in-player video ads (Pre-roll/Pause-roll).",
-        cr: "3-7%",
-        icon: MonitorPlay,
-      },
-      {
-        name: "Native PR & SEO",
-        description:
-          "Custom articles, deep-dive reviews, and linkbuilding on trusted WebSites.",
-        cr: "8-15%",
-        icon: FileText,
-      },
-      {
-        name: "Viral Social",
-        description: "Massive top-of-funnel reach via TikTok Clippers.",
-        cr: "2-5%",
-        icon: Share2,
-      },
-      {
-        name: "KOL & Streamers",
-        description:
-          "Direct endorsements and ambassadorships across Twitch, Kick, Telegram, X, and TikTok.",
-        cr: "10-25%",
-        icon: Mic,
-      },
-    ],
   },
 ];

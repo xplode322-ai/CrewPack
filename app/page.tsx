@@ -8,6 +8,7 @@ import { Sparkles } from "@/components/ui/sparkles";
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
+import { AdFormats } from "@/components/sections/ad-formats";
 import { InfluencerMarketing } from "@/components/sections/influencer-marketing";
 import { Projects } from "@/components/sections/projects";
 import { CTA } from "@/components/sections/cta";
@@ -204,6 +205,7 @@ export default function Home() {
         <div ref={contentRef}>
           <Hero />
           <Services />
+          <AdFormats />
           <InfluencerMarketing />
           <Projects />
           <CTA />
