@@ -69,12 +69,12 @@ export function TextReveal({
           <span
             key={`${w}-${i}`}
             aria-hidden="true"
-            className="-mb-[0.2em] inline-flex overflow-hidden pb-[0.2em]"
+            className="-mb-[0.3em] inline-flex overflow-hidden pb-[0.3em]"
           >
             <motion.span
               variants={word}
               className={cn(
-                "inline-block will-change-transform",
+                "inline-block leading-[1.15] will-change-transform",
                 wordClassName,
                 isAccent && accentClassName
               )}

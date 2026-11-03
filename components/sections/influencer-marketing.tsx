@@ -67,7 +67,7 @@ export function InfluencerMarketing() {
               <AnimatedNumber value={70} suffix="K" />
             </div>
             <p className="mt-3 text-sm leading-relaxed text-slate-400 sm:text-base">
-              organic members, scaled per campaign — from niche KOL seeding to
+              Organic members, scaled per campaign — from niche KOL seeding to
               full-blown community takeovers.
             </p>
 

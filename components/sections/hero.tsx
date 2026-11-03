@@ -77,7 +77,7 @@ export function Hero() {
           </Reveal>
 
           {/* Headline */}
-          <h1 className="mt-8 font-display text-[2.5rem] font-bold leading-[1.12] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-8 font-display text-[2.5rem] font-bold leading-[1.15] tracking-tight text-white sm:text-6xl lg:text-7xl">
             <span className="block">
               <TextReveal text="Global Web Traffic" />
             </span>
