@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useLenis } from "@/components/providers/LenisProvider";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -71,23 +72,25 @@ export function Navbar() {
           </span>
         </a>
 
-        <div className="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo(l.href);
-              }}
-              className="transition-colors duration-200 hover:text-neon-cyan"
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
+        <div className="hidden items-center gap-6 md:flex">
+          <div className="flex items-center gap-8 text-sm font-medium text-slate-300">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(l.href);
+                }}
+                className="transition-colors duration-200 hover:text-neon-cyan"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
 
-        <div className="hidden md:block">
+          <LanguageSwitcher />
+
           <MagneticButton>
             <Button variant="glow" size="sm" onClick={() => scrollTo("#contact")}>
               Get Traffic
@@ -128,9 +131,12 @@ export function Navbar() {
                   {l.label}
                 </a>
               ))}
+              <div className="mt-2 px-3">
+                <LanguageSwitcher className="inline-flex" />
+              </div>
               <Button
                 variant="glow"
-                className="mt-2 w-full"
+                className="mt-3 w-full"
                 onClick={() => scrollTo("#contact")}
               >
                 Get Traffic
