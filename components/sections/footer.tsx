@@ -35,7 +35,7 @@ export function Footer() {
 
         <div className="flex items-center gap-3 text-slate-400">
           <a
-            href="https://t.me/your_username"
+            href="https://t.me/AlexRank"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Telegram"
@@ -44,7 +44,7 @@ export function Footer() {
             <MessageCircle className="h-4 w-4" />
           </a>
           <a
-            href="mailto:hello@crewpack.agency"
+            href="mailto:ceo@crewpack.agency"
             aria-label="Email"
             className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 transition-all duration-300 hover:border-neon-violet/50 hover:text-neon-violet"
           >

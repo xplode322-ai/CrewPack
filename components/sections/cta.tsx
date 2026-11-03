@@ -39,20 +39,20 @@ export function CTA() {
                 <MagneticButton>
                   <Button variant="glow" size="lg" asChild>
                     <a
-                      href="https://t.me/your_username"
+                      href="https://t.me/AlexRank"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <MessageCircle className="h-5 w-5" />
-                      Chat on Telegram
+                      @AlexRank
                     </a>
                   </Button>
                 </MagneticButton>
                 <MagneticButton>
                   <Button variant="ghost" size="lg" asChild>
-                    <a href="mailto:hello@crewpack.agency">
+                    <a href="mailto:ceo@crewpack.agency">
                       <Mail className="h-5 w-5" />
-                      hello@crewpack.agency
+                      ceo@crewpack.agency
                     </a>
                   </Button>
                 </MagneticButton>
