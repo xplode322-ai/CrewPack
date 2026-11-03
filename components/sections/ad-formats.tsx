@@ -58,9 +58,9 @@ const formats: AdFormat[] = [
       "Custom articles, deep-dive reviews, and linkbuilding on trusted WebSites.",
     cr: "8-15%",
     icon: FileText,
-    accent: "text-neon-blue",
-    badgeColor: "text-neon-cyan",
-    glow: "bg-neon-blue/25",
+    accent: "text-neon-fuchsia",
+    badgeColor: "text-neon-fuchsia",
+    glow: "bg-neon-fuchsia/25",
     span: "md:col-span-1 lg:col-span-2",
     image:
       "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=900&q=70",

@@ -16,7 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "CrewPack Agency — Global Web Traffic Buying Agency",
+  title: "CrewPack.Agency — Global Web Traffic Buying Agency",
   description:
     "Exclusive organic traffic direct from admins. Crypto, iGaming and Nutra. Worldwide coverage, lowest market commissions.",
 };

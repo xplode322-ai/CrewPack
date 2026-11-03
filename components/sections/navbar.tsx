@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScrollController } from "@/components/providers/scroll-provider";
 import { Button } from "@/components/ui/button";
@@ -48,11 +49,17 @@ export function Navbar() {
           }}
           className="group flex items-center gap-2.5"
         >
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-neon-cyan to-neon-violet shadow-lg shadow-neon-violet/30 transition-transform duration-300 group-hover:scale-105">
-            <ArrowRight className="h-5 w-5 -rotate-45 text-white" />
+          <span className="relative grid h-8 w-8 place-items-center">
+            <Image
+              src="/logo21.png"
+              alt="CrewPack.Agency logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]"
+            />
           </span>
           <span className="font-display text-lg font-bold tracking-tight text-white">
-            crewpack<span className="text-neon-cyan">.agency</span>
+            CrewPack<span className="text-neon-cyan">.Agency</span>
           </span>
         </a>
 

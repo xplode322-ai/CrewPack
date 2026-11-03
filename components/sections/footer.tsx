@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowRight, Mail, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { Mail, MessageCircle } from "lucide-react";
 import { useScrollController } from "@/components/providers/scroll-provider";
 
 export function Footer() {
@@ -15,16 +16,20 @@ export function Footer() {
     <footer className="border-t border-white/5 bg-white/[0.02] py-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 sm:flex-row sm:px-8">
         <a href="#home" onClick={toTop} className="flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-neon-cyan to-neon-violet">
-            <ArrowRight className="h-4 w-4 -rotate-45 text-white" />
-          </span>
+          <Image
+            src="/logo21.png"
+            alt="CrewPack.Agency logo"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain transition-transform duration-300 hover:scale-110"
+          />
           <span className="font-display text-base font-bold text-white">
-            crewpack<span className="text-neon-cyan">.agency</span>
+            CrewPack<span className="text-neon-cyan">.Agency</span>
           </span>
         </a>
 
         <p className="text-center text-sm text-slate-500">
-          © {new Date().getFullYear()} CrewPack Agency. All rights reserved. ·
+          © {new Date().getFullYear()} CrewPack.Agency. All rights reserved. ·
           Global Web Traffic Buying Agency
         </p>
 

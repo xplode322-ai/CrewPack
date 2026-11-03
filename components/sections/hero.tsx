@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SNAP_SECTION } from "@/lib/section";
@@ -76,8 +78,30 @@ export function Hero() {
             </div>
           </Reveal>
 
+          {/* Logo — cinematic floating anchor */}
+          <Reveal delay={0.05}>
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative mx-auto mb-6"
+            >
+              <div
+                aria-hidden
+                className="absolute inset-0 -z-10 scale-125 rounded-full bg-neon-cyan/25 blur-3xl"
+              />
+              <Image
+                src="/logo.png"
+                alt="CrewPack.Agency logo"
+                width={128}
+                height={128}
+                priority
+                className="h-24 w-24 object-contain drop-shadow-[0_0_28px_rgba(34,211,238,0.55)] sm:h-32 sm:w-32"
+              />
+            </motion.div>
+          </Reveal>
+
           {/* Headline */}
-          <h1 className="mt-8 font-display text-[2.5rem] font-bold leading-[1.15] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-2 font-display text-[2.5rem] font-bold leading-[1.15] tracking-tight text-white sm:text-6xl lg:text-7xl">
             <span className="block">
               <TextReveal text="Global Web Traffic" />
             </span>
