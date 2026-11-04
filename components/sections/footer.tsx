@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useScrollController } from "@/components/providers/scroll-provider";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -36,15 +36,6 @@ export function Footer() {
         </p>
 
         <div className="flex items-center gap-3 text-slate-400">
-          <a
-            href="https://t.me/AlexRank"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Telegram"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 transition-all duration-300 hover:border-neon-cyan/50 hover:text-neon-cyan"
-          >
-            <MessageCircle className="h-4 w-4" />
-          </a>
           <a
             href="mailto:ceo@crewpack.agency"
             aria-label="Email"

@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SNAP_SECTION } from "@/lib/section";
 import { Reveal } from "@/components/ui/reveal";
@@ -38,21 +38,9 @@ export function CTA() {
                 {t.cta.description}
               </p>
 
-              <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <div className="mt-9 flex w-full items-center justify-center">
                 <MagneticButton>
                   <Button variant="glow" size="lg" asChild>
-                    <a
-                      href="https://t.me/AlexRank"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="h-5 w-5" />
-                      @AlexRank
-                    </a>
-                  </Button>
-                </MagneticButton>
-                <MagneticButton>
-                  <Button variant="ghost" size="lg" asChild>
                     <a href="mailto:ceo@crewpack.agency">
                       <Mail className="h-5 w-5" />
                       ceo@crewpack.agency
